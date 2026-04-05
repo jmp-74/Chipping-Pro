@@ -60,8 +60,19 @@ body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; background: var(
 }
 .landing-card:active { transform: scale(0.98); }
 .landing-card--gold  { border-color: var(--gold); }
-.landing-card--gold .lc-icon { color: #000; }
 .landing-card--gold  { background: linear-gradient(135deg, #1a1500, #0f0f0f); }
+.landing-card--gold .lc-icon  { color: var(--gold); }
+.landing-card--gold .lc-arrow { color: var(--gold); }
+
+/* Video Academy – Rot */
+.landing-card--dark  { border-color: #ff4d4d; background: linear-gradient(135deg, #1a0000, #0f0f0f); }
+.landing-card--dark .lc-icon  { color: #ff4d4d; }
+.landing-card--dark .lc-arrow { color: #ff4d4d; }
+
+/* Golf Quiz – Grün */
+.landing-card--quiz  { border-color: #2ecc71; background: linear-gradient(135deg, #001a0d, #0f0f0f); }
+.landing-card--quiz .lc-icon  { color: #2ecc71; }
+.landing-card--quiz .lc-arrow { color: #2ecc71; }
 
 .lc-icon  { font-size: 1.3rem; width: 36px; text-align: center; flex-shrink: 0; color: var(--gold); }
 .lc-body  { flex: 1; display: flex; flex-direction: column; gap: 3px; }
@@ -283,8 +294,8 @@ body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; background: var(
 .btn-full-gold { width: 100%; padding: 16px; background: transparent; border: 1px solid var(--gold); color: var(--gold); font-weight: 800; border-radius: 10px; cursor: pointer; font-size: 0.78rem; letter-spacing: 1px; }
 /* Landing Card Regelvideos */
 .landing-card--rules {
-    border-color: #7986cb;
-    background: linear-gradient(135deg, #0d0d1a, #0f0f0f);
+    border-color: #42a5f5;
+    background: linear-gradient(135deg, #001525, #0f0f0f);
 }
-.landing-card--rules .lc-icon  { color: #7986cb; }
-.landing-card--rules .lc-arrow { color: #7986cb; }
+.landing-card--rules .lc-icon  { color: #42a5f5; }
+.landing-card--rules .lc-arrow { color: #42a5f5; }
