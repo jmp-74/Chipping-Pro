@@ -373,3 +373,17 @@ body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; background: var(
 .termin-arrow {
     font-size: 1.1rem; color: #ffa726; font-weight: 300; flex-shrink: 0;
 }
+
+/* Maps Button */
+.btn-maps {
+    background: transparent;
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+    padding: 6px 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: border-color 0.15s;
+    -webkit-tap-highlight-color: transparent;
+}
+.btn-maps:active { border-color: #4db6ac; background: #001a18; }

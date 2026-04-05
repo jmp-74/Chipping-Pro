@@ -256,3 +256,10 @@ function addToCalendar(titel, start, end, ort) {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 }
+
+// ─────────────────────────────────────────────
+// GOOGLE MAPS
+// ─────────────────────────────────────────────
+function openMaps(url) {
+    window.open(url, '_blank');
+}
