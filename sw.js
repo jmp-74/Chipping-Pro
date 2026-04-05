@@ -1,4 +1,4 @@
-const CACHE_NAME = 'chippingdales-v1';
+const CACHE_NAME = 'chippingdales-v2';
 
 // Alle Dateien die offline verfügbar sein sollen
 const ASSETS = [

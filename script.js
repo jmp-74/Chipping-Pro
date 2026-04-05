@@ -29,7 +29,7 @@ window.onload = function () {
 // SCREEN NAVIGATION
 // ─────────────────────────────────────────────
 function showScreen(id) {
-    ['landing-screen', 'start-screen', 'video-screen', 'main-app'].forEach(function (s) {
+    ['landing-screen', 'start-screen', 'video-screen', 'quiz-screen', 'main-app'].forEach(function (s) {
         var el = document.getElementById(s);
         if (el) el.classList.add('hidden');
     });
@@ -49,6 +49,13 @@ function goToLogin() {
 
 function goToVideos() {
     showScreen('video-screen');
+}
+
+function goToQuiz() {
+    showScreen('quiz-screen');
+    if (typeof initQuiz === 'function') {
+        setTimeout(function() { initQuiz(); }, 50);
+    }
 }
 
 function backToLanding() {

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Chippingdales | Pro Performance</title>
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- iOS / Safari PWA -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Chippingdales">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <!-- Theme Color (Android Chrome) -->
+    <meta name="theme-color" content="#d4af37">
+
+    <!-- Prevent zoom / standalone feel -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     SCREEN 1: LANDING PAGE
+══════════════════════════════════════════ -->
+<div id="landing-screen" class="overlay">
+    <div class="landing-glow"></div>
+    <div class="landing-content">
+
+        <div class="landing-logo-wrap">
+            <img src="logo.png" alt="Chippingdales" class="landing-logo">
+            <div class="landing-tagline-block">
+                <span class="landing-line"></span>
+                <span class="landing-tagline-text">ELITE GOLF ANALYTICS</span>
+                <span class="landing-line"></span>
+            </div>
+        </div>
+
+        <div class="landing-cards">
+            <button onclick="goToLogin()" class="landing-card landing-card--gold">
+                <div class="lc-icon">✎</div>
+                <div class="lc-body">
+                    <span class="lc-title">TRAINING STARTEN</span>
+                    <span class="lc-sub">Schläger erfassen & Daten tracken</span>
+                </div>
+                <div class="lc-arrow">→</div>
+            </button>
+
+            <button onclick="goToVideos()" class="landing-card landing-card--dark">
+                <div class="lc-icon">▶</div>
+                <div class="lc-body">
+                    <span class="lc-title">VIDEO ACADEMY</span>
+                    <span class="lc-sub">Technik-Videos & Trainingslektionen</span>
+                </div>
+                <div class="lc-arrow">→</div>
+            </button>
+        </div>
+
+        <p class="landing-footer">Golf Club Chippingdales &nbsp;·&nbsp; Since 2021</p>
+    </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     SCREEN 2: LOGIN
+══════════════════════════════════════════ -->
+<div id="start-screen" class="overlay hidden">
+    <div class="splash-content">
+        <div class="logo-hero-container">
+            <img src="logo.png" alt="Chippingdales Logo" class="logo-hero">
+        </div>
+        <div class="login-box">
+            <h1 class="brand-title">CHIPPINGDALES</h1>
+            <p class="brand-subtitle">ELITE GOLF ANALYTICS</p>
+            <div class="input-group">
+                <input type="text" id="p-name" placeholder="Name" autocomplete="off">
+                <input type="text" id="p-hcp"  placeholder="HCP"  autocomplete="off">
+            </div>
+            <div class="selection-row">
+                <button onclick="startApp('women')" class="btn-sel">DAMEN</button>
+                <button onclick="startApp('men')"   class="btn-sel">HERREN</button>
+            </div>
+        </div>
+        <button onclick="backToLanding()" class="btn-back-landing">← ZURÜCK ZUM HAUPTMENÜ</button>
+    </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     SCREEN 3: VIDEO ACADEMY
+══════════════════════════════════════════ -->
+<div id="video-screen" class="hidden video-screen">
+
+    <div class="video-header">
+        <button onclick="backToLanding()" class="btn-back">← HAUPTMENÜ</button>
+        <div class="video-header-center">
+            <img src="logo.png" class="logo-small">
+            <span class="video-screen-title">VIDEO ACADEMY</span>
+        </div>
+    </div>
+
+    <div class="video-body">
+        <p class="video-intro">Tippe auf ein Video zum Abspielen.</p>
+
+        <!-- GRUNDLAGEN -->
+        <div class="video-category">
+            <div class="category-label"><span class="cat-dot"></span>GRUNDLAGEN</div>
+            <div class="video-grid">
+
+                <div class="video-card" onclick="openVideo('gvDbVHB03-M')">
+                    <div class="vc-thumb">
+                        <img src="https://img.youtube.com/vi/gvDbVHB03-M/mqdefault.jpg" alt="">
+                        <div class="vc-play">▶</div>
+                    </div>
+                    <div class="vc-info">
+                        <span class="vc-title">Richtig greifen beim Golf</span>
+                        <span class="vc-channel">GOLFSTUN.DE</span>
+                    </div>
+                </div>
+
+                <div class="video-card" onclick="openVideo('Mfy9Y4xFvOI')">
+                    <div class="vc-thumb">
+                        <img src="https://img.youtube.com/vi/Mfy9Y4xFvOI/mqdefault.jpg" alt="">
+                        <div class="vc-play">▶</div>
+                    </div>
+                    <div class="vc-info">
+                        <span class="vc-title">Das richtige Setup (Ansprechhaltung)</span>
+                        <span class="vc-channel">Golf.de</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- SCHWUNG -->
+        <div class="video-category">
+            <div class="category-label"><span class="cat-dot"></span>SCHWUNG</div>
+            <div class="video-grid">
+
+                <div class="video-card" onclick="openVideo('7crpLF7VNDo')">
+                    <div class="vc-thumb">
+                        <img src="https://img.youtube.com/vi/7crpLF7VNDo/mqdefault.jpg" alt="">
+                        <div class="vc-play">▶</div>
+                    </div>
+                    <div class="vc-info">
+                        <span class="vc-title">Rhythmus & Tempo im Training</span>
+                        <span class="vc-channel">Golf.de</span>
+                    </div>
+                </div>
+
+                <div class="video-card" onclick="openVideo('bZafQAhnr5Y')">
+                    <div class="vc-thumb">
+                        <img src="https://img.youtube.com/vi/bZafQAhnr5Y/mqdefault.jpg" alt="">
+                        <div class="vc-play">▶</div>
+                    </div>
+                    <div class="vc-info">
+                        <span class="vc-title">Technik & Setup für den Driver</span>
+                        <span class="vc-channel">Fabian Bünker</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- DRIVER & SLICE -->
+        <div class="video-category">
+            <div class="category-label"><span class="cat-dot"></span>DRIVER &amp; SLICE</div>
+            <div class="video-grid">
+
+                <div class="video-card" onclick="openVideo('MoWTiyGHHsk')">
+                    <div class="vc-thumb">
+                        <img src="https://img.youtube.com/vi/MoWTiyGHHsk/mqdefault.jpg" alt="">
+                        <div class="vc-play">&#9658;</div>
+                    </div>
+                    <div class="vc-info">
+                        <span class="vc-title">Anti Slice Driver Trick</span>
+                        <span class="vc-channel">EINFACH BESSER GOLFEN</span>
+                    </div>
+                </div>
+
+                <div class="video-card" onclick="openVideo('L9BlPVOD6w8')">
+                    <div class="vc-thumb">
+                        <img src="https://img.youtube.com/vi/L9BlPVOD6w8/mqdefault.jpg" alt="">
+                        <div class="vc-play">&#9658;</div>
+                    </div>
+                    <div class="vc-info">
+                        <span class="vc-title">Vom Slice zum geraden Ballflug</span>
+                        <span class="vc-channel">EINFACH BESSER GOLFEN</span>
+                    </div>
+                </div>
+
+                <div class="video-card" onclick="openVideo('j8wEqWYJX7Q')">
+                    <div class="vc-thumb">
+                        <img src="https://img.youtube.com/vi/j8wEqWYJX7Q/mqdefault.jpg" alt="">
+                        <div class="vc-play">&#9658;</div>
+                    </div>
+                    <div class="vc-info">
+                        <span class="vc-title">Slice beim Golf – Ursachen &amp; Fehler</span>
+                        <span class="vc-channel">GOLFSTUN.DE</span>
+                    </div>
+                </div>
+
+                <div class="video-card" onclick="openVideo('XTg_QMRR-wU')">
+                    <div class="vc-thumb">
+                        <img src="https://img.youtube.com/vi/XTg_QMRR-wU/mqdefault.jpg" alt="">
+                        <div class="vc-play">&#9658;</div>
+                    </div>
+                    <div class="vc-info">
+                        <span class="vc-title">Quicktip gegen Slice (Zuhause/Büro)</span>
+                        <span class="vc-channel">Michael Behrens</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- KURZES SPIEL -->
+        <div class="video-category">
+            <div class="category-label"><span class="cat-dot"></span>KURZES SPIEL</div>
+            <div class="video-grid">
+
+                <div class="video-card" onclick="openVideo('0TbWsdD0I8Y')">
+                    <div class="vc-thumb">
+                        <img src="https://img.youtube.com/vi/0TbWsdD0I8Y/mqdefault.jpg" alt="">
+                        <div class="vc-play">▶</div>
+                    </div>
+                    <div class="vc-info">
+                        <span class="vc-title">Chippen – Die perfekte Technik</span>
+                        <span class="vc-channel">Fabian Bünker</span>
+                    </div>
+                </div>
+
+                <div class="video-card" onclick="openVideo('nNvVgr8JBPo')">
+                    <div class="vc-thumb">
+                        <img src="https://img.youtube.com/vi/nNvVgr8JBPo/mqdefault.jpg" alt="">
+                        <div class="vc-play">▶</div>
+                    </div>
+                    <div class="vc-info">
+                        <span class="vc-title">Chip vs. Pitch: Technik & Einsatz</span>
+                        <span class="vc-channel">BIRDIETRAIN</span>
+                    </div>
+                </div>
+
+                <div class="video-card" onclick="openVideo('OgK6t-gjfiw')">
+                    <div class="vc-thumb">
+                        <img src="https://img.youtube.com/vi/OgK6t-gjfiw/mqdefault.jpg" alt="">
+                        <div class="vc-play">▶</div>
+                    </div>
+                    <div class="vc-info">
+                        <span class="vc-title">Die 3 Geheimnisse beim Pitchen</span>
+                        <span class="vc-channel">GOLFSTUN.DE</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- FITNESS -->
+        <div class="video-category">
+            <div class="category-label"><span class="cat-dot"></span>FITNESS</div>
+            <div class="video-grid">
+
+                <div class="video-card" onclick="openVideo('10FIGsSy4c4')">
+                    <div class="vc-thumb">
+                        <img src="https://img.youtube.com/vi/10FIGsSy4c4/mqdefault.jpg" alt="">
+                        <div class="vc-play">▶</div>
+                    </div>
+                    <div class="vc-info">
+                        <span class="vc-title">10 Übungen für Mobilität & Rotation</span>
+                        <span class="vc-channel">golfreich.fitness</span>
+                    </div>
+                </div>
+
+                <div class="video-card" onclick="openVideo('JubIeqs-PQU')">
+                    <div class="vc-thumb">
+                        <img src="https://img.youtube.com/vi/JubIeqs-PQU/mqdefault.jpg" alt="">
+                        <div class="vc-play">▶</div>
+                    </div>
+                    <div class="vc-info">
+                        <span class="vc-title">Golf Fitness Home Workout</span>
+                        <span class="vc-channel">HIO Fitting</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- TÄGLICHE ÜBUNG -->
+        <div class="video-category">
+            <div class="category-label"><span class="cat-dot"></span>TÄGLICHE ÜBUNG</div>
+            <div class="video-grid">
+
+                <div class="video-card" onclick="openVideo('X0CkxbgR6jA')">
+                    <div class="vc-thumb">
+                        <img src="https://img.youtube.com/vi/X0CkxbgR6jA/mqdefault.jpg" alt="">
+                        <div class="vc-play">▶</div>
+                    </div>
+                    <div class="vc-info">
+                        <span class="vc-title">Tägliche Golfschwung-Übung für Zuhause</span>
+                        <span class="vc-channel">Golfen mit Freude</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div style="height:30px;"></div>
+    </div>
+
+    <!-- Video Modal (in-app player) -->
+    <div id="video-modal" class="modal hidden">
+        <div class="video-modal-content">
+            <button onclick="closeVideo()" class="btn-video-close">✖ SCHLIESSEN</button>
+            <div class="video-embed-wrap">
+                <iframe id="video-iframe" src="" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     MODALS (Ref & Delete)
+══════════════════════════════════════════ -->
+<div id="ref-modal" class="modal hidden">
+    <div class="modal-content ref-modal-content">
+        <div class="modal-header">
+            <h3>RICHTWERTE (m)</h3>
+            <button onclick="closeRef()" class="btn-close">✖</button>
+        </div>
+        <div class="ref-grid" id="ref-grid"></div>
+    </div>
+</div>
+
+<div id="delete-modal" class="modal hidden">
+    <div class="modal-content">
+        <h3 style="color:#ff4d4d;">SYSTEM RESET?</h3>
+        <p style="font-size:0.8rem;color:#aaa;">Alle Daten werden unwiderruflich gelöscht.</p>
+        <div class="modal-btns">
+            <button onclick="closeDeleteModal()" class="btn-gray-compact">ABBRECHEN</button>
+            <button onclick="clearAllData()"     class="btn-red-compact">RESET</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     MAIN APP
+══════════════════════════════════════════ -->
+<div id="main-app" class="hidden">
+
+    <header class="app-header">
+        <div class="header-left">
+            <img src="logo.png" class="logo-small">
+            <span id="gender-tag" class="gender-label">---</span>
+        </div>
+        <div class="header-right">
+            <strong id="display-name-header">---</strong>
+            <span id="display-hcp" class="hcp-label">HCP: --</span>
+        </div>
+    </header>
+
+    <main class="app-body">
+
+        <!-- TAB: TRAINING -->
+        <section id="section-entry" class="tab-pane">
+            <div class="pane-header">
+                <div class="header-title-group">
+                    <h2 id="welcome-message">WILLKOMMEN!</h2>
+                    <span id="live-date-header" class="live-date-tag">--.--.----</span>
+                </div>
+                <div class="header-actions">
+                    <button onclick="openRef()"        class="btn-quick-ref">🎯 REF</button>
+                    <button onclick="saveToHistory()"  class="btn-quick-save">💾 SAVE</button>
+                </div>
+            </div>
+            <div class="scroll-area">
+                <div id="input-list"></div>
+                <div style="height:50px;"></div>
+            </div>
+        </section>
+
+        <!-- TAB: HISTORY -->
+        <section id="section-history" class="tab-pane hidden">
+            <div class="pane-header">
+                <h2>TRAININGS-ARCHIV</h2>
+            </div>
+            <div class="scroll-area" id="history-rows"></div>
+        </section>
+
+        <!-- TAB: EINSTELLUNGEN -->
+        <section id="section-settings" class="tab-pane hidden">
+            <div class="pane-header">
+                <h2>EINSTELLUNGEN</h2>
+            </div>
+            <div class="scroll-area settings-page">
+                <div class="settings-card">
+                    <button class="btn-full-red"  onclick="openDeleteModal()">APP ZURÜCKSETZEN</button>
+                </div>
+                <div class="settings-card" style="margin-top:12px;">
+                    <button class="btn-full-gold" onclick="goBackToLandingFromApp()">← HAUPTMENÜ</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <nav class="bottom-nav">
+        <button onclick="showTab('entry')"   id="nav-entry"   class="nav-item active">
+            <div class="nav-icon">✎</div><span>TRAINING</span>
+        </button>
+        <button onclick="showTab('history')" id="nav-history" class="nav-item">
+            <div class="nav-icon">📊</div><span>HISTORY</span>
+        </button>
+        <button onclick="openRef()" class="nav-item">
+            <div class="nav-icon">⛳</div><span>REF</span>
+        </button>
+        <button onclick="goBackToLandingFromApp()" class="nav-item">
+            <div class="nav-icon">🏠</div><span>MENÜ</span>
+        </button>
+    </nav>
+
+</div>
+
+<script src="script.js"></script>
+<script>
+    // Service Worker registrieren
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+            navigator.serviceWorker.register('./sw.js')
+                .then(function (reg) { console.log('SW registriert:', reg.scope); })
+                .catch(function (err) { console.log('SW Fehler:', err); });
+        });
+    }
+</script>
+</body>
+</html>
