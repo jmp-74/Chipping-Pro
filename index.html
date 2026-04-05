@@ -511,248 +511,62 @@
      SCREEN 6: TERMINE 2026
 ══════════════════════════════════════════ -->
 <div id="termine-screen" class="hidden termine-screen">
-
     <div class="video-header">
         <button onclick="backToLanding()" class="btn-back">← HAUPTMENÜ</button>
-        <div class="video-header-center">
-            <img src="logo.png" class="logo-small">
-            <span class="video-screen-title">TERMINE 2026</span>
-        </div>
+        <div class="video-header-center"><img src="logo.png" class="logo-small"><span class="video-screen-title">TERMINE 2026</span></div>
     </div>
-
     <div class="termine-body">
-        <p class="video-intro">Tippe auf einen Termin → direkt in deinen Kalender.</p>
+        <p class="video-intro">Tippe auf einen Termin → Kalender &nbsp;|&nbsp; 🗺 → Navigation</p>
 
-        <div class="termine-gruppe">
-            <div class="termine-gruppe-label"><span class="cat-dot"></span>FRÜHJAHR</div>
-
-            <div class="termin-card" onclick="addToCalendar('Chippingdales Mitgliederversammlung','20260320T163000','20260320T190000','Waiblingen')">
-                <div class="termin-datum"><span class="termin-tag">FR</span><span class="termin-day">20.03.</span></div>
-                <div class="termin-info"><span class="termin-titel">Mitgliederversammlung</span><span class="termin-ort">📍 Waiblingen, 16:30 Uhr</span></div>
-                <button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Waiblingen,+Deutschland')" class="btn-maps">🗺</button>
-                <div class="termin-arrow">＋</div>
-            </div>
-
-            <div class="termin-card" onclick="addToCalendar('Chippingdales – Platz 9-Loch Hetzenhof','20260506T173000','20260506T210000','Hetzenhof')">
-                <div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">06.05.</span></div>
-                <div class="termin-info"><span class="termin-titel">Platz: 9-Loch</span><span class="termin-ort">📍 Hetzenhof · 30,- €</span></div>
-                <button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Waiblingen,+Deutschland')" class="btn-maps">🗺</button>
-                <div class="termin-arrow">＋</div>
-            </div>
-
-            <div class="termin-card training" onclick="addToCalendar('Chippingdales – Training mit Heinz','20260513T173000','20260513T210000','Hedelfingen')">
-                <div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">13.05.</span></div>
-                <div class="termin-info"><span class="termin-titel">Training mit Heinz</span><span class="termin-ort">📍 Hedelfingen · 18,- €</span></div>
-                <button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Waiblingen,+Deutschland')" class="btn-maps">🗺</button>
-                <div class="termin-arrow">＋</div>
-            </div>
-
-            <div class="termin-card" onclick="addToCalendar('Chippingdales – Platz 9-Loch Haghof','20260520T173000','20260520T210000','Haghof/Hetzenhof')">
-                <div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">20.05.</span></div>
-                <div class="termin-info"><span class="termin-titel">Platz: 9-Loch</span><span class="termin-ort">📍 Haghof/Hetzenhof · 35,-/30,- €</span></div>
-                <button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Waiblingen,+Deutschland')" class="btn-maps">🗺</button>
-                <div class="termin-arrow">＋</div>
-            </div>
-
-            <div class="termin-card training" onclick="addToCalendar('Chippingdales – Training mit Heinz','20260527T173000','20260527T210000','Hedelfingen')">
-                <div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">27.05.</span></div>
-                <div class="termin-info"><span class="termin-titel">Training mit Heinz</span><span class="termin-ort">📍 Hedelfingen · 18,- €</span></div>
-                <button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Waiblingen,+Deutschland')" class="btn-maps">🗺</button>
-                <div class="termin-arrow">＋</div>
-            </div>
+        <div class="termine-gruppe"><div class="termine-gruppe-label"><span class="cat-dot"></span>MÄRZ / MAI</div>
+        <div class="termin-card special" onclick="addToCalendar('Chippingdales Mitgliederversammlung','20260320T163000','20260320T193000','Waiblingen')"><div class="termin-datum"><span class="termin-tag">FR</span><span class="termin-day">20.03.</span></div><div class="termin-info"><span class="termin-titel">Mitgliederversammlung</span><span class="termin-ort">📍 Waiblingen · 16:30 Uhr</span></div><button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Waiblingen,+71332')" class="btn-maps">🗺</button><div class="termin-arrow">＋</div></div>
+        <div class="termin-card" onclick="addToCalendar('Chippingdales – Platz 9-Loch GC Hetzenhof','20260506T180000','20260506T213000','GC Hetzenhof, Am Hetzenhof 5, 73547 Lorch')"><div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">06.05.</span></div><div class="termin-info"><span class="termin-titel">Platz: 9-Loch</span><span class="termin-ort">📍 GC Hetzenhof, Lorch · 18:00 Uhr · 30,- €</span></div><button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Am+Hetzenhof+5,+73547+Lorch')" class="btn-maps">🗺</button><div class="termin-arrow">＋</div></div>
+        <div class="termin-card training" onclick="addToCalendar('Chippingdales – Training mit Heinz','20260513T173000','20260513T210000','GolfKultur, Am Sportpark 1, 70329 Stuttgart')"><div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">13.05.</span></div><div class="termin-info"><span class="termin-titel">Training mit Heinz</span><span class="termin-ort">📍 GolfKultur Stuttgart · 17:30 Uhr · 18,- €</span></div><button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Am+Sportpark+1,+70329+Stuttgart-Hedelfingen')" class="btn-maps">🗺</button><div class="termin-arrow">＋</div></div>
+        <div class="termin-card" onclick="addToCalendar('Chippingdales – Platz 9-Loch GC Haghof','20260520T180000','20260520T213000','GC Haghof, Haghof 5, 73553 Alfdorf')"><div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">20.05.</span></div><div class="termin-info"><span class="termin-titel">Platz: 9-Loch</span><span class="termin-ort">📍 GC Haghof, Alfdorf · 18:00 Uhr · 35,- €</span></div><button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Haghof+5,+73553+Alfdorf')" class="btn-maps">🗺</button><div class="termin-arrow">＋</div></div>
+        <div class="termin-card training" onclick="addToCalendar('Chippingdales – Training mit Heinz','20260527T173000','20260527T210000','GolfKultur, Am Sportpark 1, 70329 Stuttgart')"><div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">27.05.</span></div><div class="termin-info"><span class="termin-titel">Training mit Heinz</span><span class="termin-ort">📍 GolfKultur Stuttgart · 17:30 Uhr · 18,- €</span></div><button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Am+Sportpark+1,+70329+Stuttgart-Hedelfingen')" class="btn-maps">🗺</button><div class="termin-arrow">＋</div></div>
         </div>
 
-        <div class="termine-gruppe">
-            <div class="termine-gruppe-label"><span class="cat-dot"></span>JUNI</div>
-
-            <div class="termin-card turnier" onclick="addToCalendar('Chippingdales – Turnier 9-Loch RPR','20260603T173000','20260603T210000','Haghof/Hetzenhof')">
-                <div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">03.06.</span></div>
-                <div class="termin-info"><span class="termin-titel">🏆 Turnier: 9-Loch RPR</span><span class="termin-ort">📍 Haghof/Hetzenhof · 35,-/40,- €</span></div>
-                <button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Hetzenhof+7,+73547+Lorch')" class="btn-maps">🗺</button>
-                <div class="termin-arrow">＋</div>
-            </div>
-
-            <div class="termin-card training" onclick="addToCalendar('Chippingdales – Training mit Heinz','20260610T173000','20260610T210000','Hedelfingen')">
-                <div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">10.06.</span></div>
-                <div class="termin-info"><span class="termin-titel">Training mit Heinz</span><span class="termin-ort">📍 Hedelfingen · 18,- €</span></div>
-                <button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Hetzenhof+7,+73547+Lorch')" class="btn-maps">🗺</button>
-                <div class="termin-arrow">＋</div>
-            </div>
-
-            <div class="termin-card" onclick="addToCalendar('Chippingdales – Platz 9-Loch Hetzenhof','20260617T173000','20260617T210000','Hetzenhof')">
-                <div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">17.06.</span></div>
-                <div class="termin-info"><span class="termin-titel">Platz: 9-Loch</span><span class="termin-ort">📍 Hetzenhof · 35,-/30,- €</span></div>
-                <button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Hetzenhof+7,+73547+Lorch')" class="btn-maps">🗺</button>
-                <div class="termin-arrow">＋</div>
-            </div>
-
-            <div class="termin-card training" onclick="addToCalendar('Chippingdales – Training mit Heinz','20260624T173000','20260624T210000','Hedelfingen')">
-                <div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">24.06.</span></div>
-                <div class="termin-info"><span class="termin-titel">Training mit Heinz</span><span class="termin-ort">📍 Hedelfingen · 18,- €</span></div>
-                <button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Hetzenhof+7,+73547+Lorch')" class="btn-maps">🗺</button>
-                <div class="termin-arrow">＋</div>
-            </div>
+        <div class="termine-gruppe"><div class="termine-gruppe-label"><span class="cat-dot"></span>JUNI</div>
+        <div class="termin-card turnier" onclick="addToCalendar('Chippingdales – Turnier 9-Loch RPR GC Hetzenhof','20260603T180000','20260603T213000','GC Hetzenhof, Am Hetzenhof 5, 73547 Lorch')"><div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">03.06.</span></div><div class="termin-info"><span class="termin-titel">🏆 Turnier: 9-Loch RPR</span><span class="termin-ort">📍 GC Hetzenhof, Lorch · 18:00 Uhr · 40,- €</span></div><button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Am+Hetzenhof+5,+73547+Lorch')" class="btn-maps">🗺</button><div class="termin-arrow">＋</div></div>
+        <div class="termin-card training" onclick="addToCalendar('Chippingdales – Training mit Heinz','20260610T173000','20260610T210000','GolfKultur, Am Sportpark 1, 70329 Stuttgart')"><div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">10.06.</span></div><div class="termin-info"><span class="termin-titel">Training mit Heinz</span><span class="termin-ort">📍 GolfKultur Stuttgart · 17:30 Uhr · 18,- €</span></div><button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Am+Sportpark+1,+70329+Stuttgart-Hedelfingen')" class="btn-maps">🗺</button><div class="termin-arrow">＋</div></div>
+        <div class="termin-card" onclick="addToCalendar('Chippingdales – Platz 9-Loch GC Hetzenhof','20260617T180000','20260617T213000','GC Hetzenhof, Am Hetzenhof 5, 73547 Lorch')"><div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">17.06.</span></div><div class="termin-info"><span class="termin-titel">Platz: 9-Loch</span><span class="termin-ort">📍 GC Hetzenhof, Lorch · 18:00 Uhr · 30,- €</span></div><button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Am+Hetzenhof+5,+73547+Lorch')" class="btn-maps">🗺</button><div class="termin-arrow">＋</div></div>
+        <div class="termin-card training" onclick="addToCalendar('Chippingdales – Training mit Heinz','20260624T173000','20260624T210000','GolfKultur, Am Sportpark 1, 70329 Stuttgart')"><div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">24.06.</span></div><div class="termin-info"><span class="termin-titel">Training mit Heinz</span><span class="termin-ort">📍 GolfKultur Stuttgart · 17:30 Uhr · 18,- €</span></div><button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Am+Sportpark+1,+70329+Stuttgart-Hedelfingen')" class="btn-maps">🗺</button><div class="termin-arrow">＋</div></div>
         </div>
 
-        <div class="termine-gruppe">
-            <div class="termine-gruppe-label"><span class="cat-dot"></span>JULI</div>
-
-            <div class="termin-card turnier" onclick="addToCalendar('Chippingdales – Turnier 9-Loch RPR','20260701T173000','20260701T210000','Haghof/Hetzenhof')">
-                <div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">01.07.</span></div>
-                <div class="termin-info"><span class="termin-titel">🏆 Turnier: 9-Loch RPR</span><span class="termin-ort">📍 Haghof/Hetzenhof · 35,-/40,- €</span></div>
-                <button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Hetzenhof+7,+73547+Lorch')" class="btn-maps">🗺</button>
-                <div class="termin-arrow">＋</div>
-            </div>
-
-            <div class="termin-card training" onclick="addToCalendar('Chippingdales – Training mit Heinz','20260708T173000','20260708T210000','Hedelfingen')">
-                <div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">08.07.</span></div>
-                <div class="termin-info"><span class="termin-titel">Training mit Heinz</span><span class="termin-ort">📍 Hedelfingen · 18,- €</span></div>
-                <button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Hetzenhof+7,+73547+Lorch')" class="btn-maps">🗺</button>
-                <div class="termin-arrow">＋</div>
-            </div>
-
-            <div class="termin-card" onclick="addToCalendar('Chippingdales – Platz 9/18-Loch Haghof','20260716T173000','20260716T210000','Haghof')">
-                <div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">16.07.</span></div>
-                <div class="termin-info"><span class="termin-titel">Platz: 9-Loch/18-Loch</span><span class="termin-ort">📍 Haghof · 35,-/50,- €</span></div>
-                <button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Hetzenhof+7,+73547+Lorch')" class="btn-maps">🗺</button>
-                <div class="termin-arrow">＋</div>
-            </div>
-
-            <div class="termin-card special" onclick="addToCalendar('Chippingdales – Unmögl. Golfturnier & Span. Nacht (5J Jubiläum)','20260717T173000','20260717T230000','Haghof Kurzplatz, Waiblingen')">
-                <div class="termin-datum"><span class="termin-tag">FR</span><span class="termin-day">17.07.</span></div>
-                <div class="termin-info"><span class="termin-titel">⭐ Unmögl. Golfturnier / Span. Nacht</span><span class="termin-ort">📍 Haghof Kurzplatz · 17,50 € · 5J Jubiläum</span></div>
-                <button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Hetzenhof+7,+73547+Lorch')" class="btn-maps">🗺</button>
-                <div class="termin-arrow">＋</div>
-            </div>
-
-            <div class="termin-card training" onclick="addToCalendar('Chippingdales – Training mit Heinz','20260722T173000','20260722T210000','Hedelfingen')">
-                <div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">22.07.</span></div>
-                <div class="termin-info"><span class="termin-titel">Training mit Heinz</span><span class="termin-ort">📍 Hedelfingen · 18,- €</span></div>
-                <button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Hetzenhof+7,+73547+Lorch')" class="btn-maps">🗺</button>
-                <div class="termin-arrow">＋</div>
-            </div>
-
-            <div class="termin-card turnier" onclick="addToCalendar('Chippingdales – Turnier 9-Loch RPR','20260729T173000','20260729T210000','Haghof/Hetzenhof')">
-                <div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">29.07.</span></div>
-                <div class="termin-info"><span class="termin-titel">🏆 Turnier: 9-Loch RPR</span><span class="termin-ort">📍 Haghof/Hetzenhof · 35,-/40,- €</span></div>
-                <button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Hetzenhof+7,+73547+Lorch')" class="btn-maps">🗺</button>
-                <div class="termin-arrow">＋</div>
-            </div>
+        <div class="termine-gruppe"><div class="termine-gruppe-label"><span class="cat-dot"></span>JULI</div>
+        <div class="termin-card turnier" onclick="addToCalendar('Chippingdales – Turnier 9-Loch RPR GC Haghof','20260701T180000','20260701T213000','GC Haghof, Haghof 5, 73553 Alfdorf')"><div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">01.07.</span></div><div class="termin-info"><span class="termin-titel">🏆 Turnier: 9-Loch RPR</span><span class="termin-ort">📍 GC Haghof, Alfdorf · 18:00 Uhr · 35,- €</span></div><button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Haghof+5,+73553+Alfdorf')" class="btn-maps">🗺</button><div class="termin-arrow">＋</div></div>
+        <div class="termin-card training" onclick="addToCalendar('Chippingdales – Training mit Heinz','20260708T173000','20260708T210000','GolfKultur, Am Sportpark 1, 70329 Stuttgart')"><div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">08.07.</span></div><div class="termin-info"><span class="termin-titel">Training mit Heinz</span><span class="termin-ort">📍 GolfKultur Stuttgart · 17:30 Uhr · 18,- €</span></div><button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Am+Sportpark+1,+70329+Stuttgart-Hedelfingen')" class="btn-maps">🗺</button><div class="termin-arrow">＋</div></div>
+        <div class="termin-card" onclick="addToCalendar('Chippingdales – Platz 9/18-Loch GC Haghof','20260716T180000','20260716T213000','GC Haghof, Haghof 5, 73553 Alfdorf')"><div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">16.07.</span></div><div class="termin-info"><span class="termin-titel">Platz: 9/18-Loch</span><span class="termin-ort">📍 GC Haghof, Alfdorf · 18:00 Uhr · 35,-/50,- €</span></div><button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Haghof+5,+73553+Alfdorf')" class="btn-maps">🗺</button><div class="termin-arrow">＋</div></div>
+        <div class="termin-card special" onclick="addToCalendar('Chippingdales – Unmögl. Turnier & Span. Nacht (5J Jubiläum)','20260717T173000','20260717T230000','Haghof Kurzplatz, Haghof 5, 73553 Alfdorf')"><div class="termin-datum"><span class="termin-tag">FR</span><span class="termin-day">17.07.</span></div><div class="termin-info"><span class="termin-titel">⭐ Unmögl. Turnier / Span. Nacht</span><span class="termin-ort">📍 Haghof Kurzplatz · 17,50 € · 5J Jubiläum</span></div><button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Haghof+5,+73553+Alfdorf')" class="btn-maps">🗺</button><div class="termin-arrow">＋</div></div>
+        <div class="termin-card training" onclick="addToCalendar('Chippingdales – Training mit Heinz','20260722T173000','20260722T210000','GolfKultur, Am Sportpark 1, 70329 Stuttgart')"><div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">22.07.</span></div><div class="termin-info"><span class="termin-titel">Training mit Heinz</span><span class="termin-ort">📍 GolfKultur Stuttgart · 17:30 Uhr · 18,- €</span></div><button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Am+Sportpark+1,+70329+Stuttgart-Hedelfingen')" class="btn-maps">🗺</button><div class="termin-arrow">＋</div></div>
+        <div class="termin-card turnier" onclick="addToCalendar('Chippingdales – Turnier 9-Loch RPR GC Hetzenhof','20260729T180000','20260729T213000','GC Hetzenhof, Am Hetzenhof 5, 73547 Lorch')"><div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">29.07.</span></div><div class="termin-info"><span class="termin-titel">🏆 Turnier: 9-Loch RPR</span><span class="termin-ort">📍 GC Hetzenhof, Lorch · 18:00 Uhr · 40,- €</span></div><button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Am+Hetzenhof+5,+73547+Lorch')" class="btn-maps">🗺</button><div class="termin-arrow">＋</div></div>
         </div>
 
-        <div class="termine-gruppe">
-            <div class="termine-gruppe-label"><span class="cat-dot"></span>AUGUST</div>
-
-            <div class="termin-card training" onclick="addToCalendar('Chippingdales – Training mit Heinz','20260805T173000','20260805T210000','Hedelfingen')">
-                <div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">05.08.</span></div>
-                <div class="termin-info"><span class="termin-titel">Training mit Heinz</span><span class="termin-ort">📍 Hedelfingen · 18,- €</span></div>
-                <button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Steinpr%C3%BCgel+2,+70329+Stuttgart-Hedelfingen')" class="btn-maps">🗺</button>
-                <div class="termin-arrow">＋</div>
-            </div>
-
-            <div class="termin-card" onclick="addToCalendar('Chippingdales – Platz 9/18-Loch','20260812T173000','20260812T210000','Haghof/Hetzenhof')">
-                <div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">12.08.</span></div>
-                <div class="termin-info"><span class="termin-titel">Platz: 9-Loch/18-Loch</span><span class="termin-ort">📍 Haghof/Hetzenhof · 35,-/30,- €</span></div>
-                <button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Steinpr%C3%BCgel+2,+70329+Stuttgart-Hedelfingen')" class="btn-maps">🗺</button>
-                <div class="termin-arrow">＋</div>
-            </div>
-
-            <div class="termin-card training" onclick="addToCalendar('Chippingdales – Training mit Heinz','20260819T173000','20260819T210000','Hedelfingen')">
-                <div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">19.08.</span></div>
-                <div class="termin-info"><span class="termin-titel">Training mit Heinz</span><span class="termin-ort">📍 Hedelfingen · 18,- €</span></div>
-                <button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Steinpr%C3%BCgel+2,+70329+Stuttgart-Hedelfingen')" class="btn-maps">🗺</button>
-                <div class="termin-arrow">＋</div>
-            </div>
-
-            <div class="termin-card turnier" onclick="addToCalendar('Chippingdales – Turnier 9-Loch RPR','20260826T173000','20260826T210000','Haghof/Hetzenhof')">
-                <div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">26.08.</span></div>
-                <div class="termin-info"><span class="termin-titel">🏆 Turnier: 9-Loch RPR</span><span class="termin-ort">📍 Haghof/Hetzenhof · 35,-/40,- €</span></div>
-                <button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Steinpr%C3%BCgel+2,+70329+Stuttgart-Hedelfingen')" class="btn-maps">🗺</button>
-                <div class="termin-arrow">＋</div>
-            </div>
+        <div class="termine-gruppe"><div class="termine-gruppe-label"><span class="cat-dot"></span>AUGUST</div>
+        <div class="termin-card training" onclick="addToCalendar('Chippingdales – Training mit Heinz','20260805T173000','20260805T210000','GolfKultur, Am Sportpark 1, 70329 Stuttgart')"><div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">05.08.</span></div><div class="termin-info"><span class="termin-titel">Training mit Heinz</span><span class="termin-ort">📍 GolfKultur Stuttgart · 17:30 Uhr · 18,- €</span></div><button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Am+Sportpark+1,+70329+Stuttgart-Hedelfingen')" class="btn-maps">🗺</button><div class="termin-arrow">＋</div></div>
+        <div class="termin-card" onclick="addToCalendar('Chippingdales – Platz 9/18-Loch GC Haghof','20260812T180000','20260812T213000','GC Haghof, Haghof 5, 73553 Alfdorf')"><div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">12.08.</span></div><div class="termin-info"><span class="termin-titel">Platz: 9/18-Loch</span><span class="termin-ort">📍 GC Haghof, Alfdorf · 18:00 Uhr · 35,- €</span></div><button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Haghof+5,+73553+Alfdorf')" class="btn-maps">🗺</button><div class="termin-arrow">＋</div></div>
+        <div class="termin-card training" onclick="addToCalendar('Chippingdales – Training mit Heinz','20260819T173000','20260819T210000','GolfKultur, Am Sportpark 1, 70329 Stuttgart')"><div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">19.08.</span></div><div class="termin-info"><span class="termin-titel">Training mit Heinz</span><span class="termin-ort">📍 GolfKultur Stuttgart · 17:30 Uhr · 18,- €</span></div><button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Am+Sportpark+1,+70329+Stuttgart-Hedelfingen')" class="btn-maps">🗺</button><div class="termin-arrow">＋</div></div>
+        <div class="termin-card turnier" onclick="addToCalendar('Chippingdales – Turnier 9-Loch RPR GC Hetzenhof','20260826T180000','20260826T213000','GC Hetzenhof, Am Hetzenhof 5, 73547 Lorch')"><div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">26.08.</span></div><div class="termin-info"><span class="termin-titel">🏆 Turnier: 9-Loch RPR</span><span class="termin-ort">📍 GC Hetzenhof, Lorch · 18:00 Uhr · 40,- €</span></div><button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Am+Hetzenhof+5,+73547+Lorch')" class="btn-maps">🗺</button><div class="termin-arrow">＋</div></div>
         </div>
 
-        <div class="termine-gruppe">
-            <div class="termine-gruppe-label"><span class="cat-dot"></span>SEPTEMBER</div>
-
-            <div class="termin-card training" onclick="addToCalendar('Chippingdales – Training mit Heinz','20260902T173000','20260902T210000','Hedelfingen')">
-                <div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">02.09.</span></div>
-                <div class="termin-info"><span class="termin-titel">Training mit Heinz</span><span class="termin-ort">📍 Hedelfingen · 18,- €</span></div>
-                <button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Steinpr%C3%BCgel+2,+70329+Stuttgart-Hedelfingen')" class="btn-maps">🗺</button>
-                <div class="termin-arrow">＋</div>
-            </div>
-
-            <div class="termin-card special" onclick="addToCalendar('Chippingdales Open','20260904T090000','20260906T180000','Leonhardshaun')">
-                <div class="termin-datum"><span class="termin-tag">FR-SO</span><span class="termin-day">04–06.09.</span></div>
-                <div class="termin-info"><span class="termin-titel">⭐ Chippingdale-Open</span><span class="termin-ort">📍 Leonhardshaun</span></div>
-                <button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Steinpr%C3%BCgel+2,+70329+Stuttgart-Hedelfingen')" class="btn-maps">🗺</button>
-                <div class="termin-arrow">＋</div>
-            </div>
-
-            <div class="termin-card" onclick="addToCalendar('Chippingdales – Platz 9-Loch','20260909T173000','20260909T210000','Haghof/Hetzenhof')">
-                <div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">09.09.</span></div>
-                <div class="termin-info"><span class="termin-titel">Platz: 9-Loch</span><span class="termin-ort">📍 Haghof/Hetzenhof · 35,-/30,- €</span></div>
-                <button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Steinpr%C3%BCgel+2,+70329+Stuttgart-Hedelfingen')" class="btn-maps">🗺</button>
-                <div class="termin-arrow">＋</div>
-            </div>
-
-            <div class="termin-card training" onclick="addToCalendar('Chippingdales – Training mit Heinz','20260916T173000','20260916T210000','Hedelfingen')">
-                <div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">16.09.</span></div>
-                <div class="termin-info"><span class="termin-titel">Training mit Heinz</span><span class="termin-ort">📍 Hedelfingen · 18,- €</span></div>
-                <button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Steinpr%C3%BCgel+2,+70329+Stuttgart-Hedelfingen')" class="btn-maps">🗺</button>
-                <div class="termin-arrow">＋</div>
-            </div>
-
-            <div class="termin-card" onclick="addToCalendar('Chippingdales – Platz Kurzplatz','20260923T173000','20260923T210000','Haghof/Hetzenhof')">
-                <div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">23.09.</span></div>
-                <div class="termin-info"><span class="termin-titel">Platz: Kurzplatz</span><span class="termin-ort">📍 Haghof/Hetzenhof · 20,- €</span></div>
-                <button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Steinpr%C3%BCgel+2,+70329+Stuttgart-Hedelfingen')" class="btn-maps">🗺</button>
-                <div class="termin-arrow">＋</div>
-            </div>
-
-            <div class="termin-card special" onclick="addToCalendar('Chippingdales Oktoberfest','20260925T120000','20260925T230000','Cannstatter Wasen')">
-                <div class="termin-datum"><span class="termin-tag">FR</span><span class="termin-day">25.09.</span></div>
-                <div class="termin-info"><span class="termin-titel">⭐ Chippingdales Oktoberfest</span><span class="termin-ort">📍 Cannstatter Wasen · 70,- €</span></div>
-                <button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Steinpr%C3%BCgel+2,+70329+Stuttgart-Hedelfingen')" class="btn-maps">🗺</button>
-                <div class="termin-arrow">＋</div>
-            </div>
-
-            <div class="termin-card training" onclick="addToCalendar('Chippingdales – Training mit Heinz','20260930T173000','20260930T210000','Hedelfingen')">
-                <div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">30.09.</span></div>
-                <div class="termin-info"><span class="termin-titel">Training mit Heinz</span><span class="termin-ort">📍 Hedelfingen · 18,- €</span></div>
-                <button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Steinpr%C3%BCgel+2,+70329+Stuttgart-Hedelfingen')" class="btn-maps">🗺</button>
-                <div class="termin-arrow">＋</div>
-            </div>
+        <div class="termine-gruppe"><div class="termine-gruppe-label"><span class="cat-dot"></span>SEPTEMBER</div>
+        <div class="termin-card training" onclick="addToCalendar('Chippingdales – Training mit Heinz','20260902T173000','20260902T210000','GolfKultur, Am Sportpark 1, 70329 Stuttgart')"><div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">02.09.</span></div><div class="termin-info"><span class="termin-titel">Training mit Heinz</span><span class="termin-ort">📍 GolfKultur Stuttgart · 17:30 Uhr · 18,- €</span></div><button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Am+Sportpark+1,+70329+Stuttgart-Hedelfingen')" class="btn-maps">🗺</button><div class="termin-arrow">＋</div></div>
+        <div class="termin-card special" onclick="addToCalendar('Chippingdale-Open','20260904T090000','20260906T180000','Leonhardshaun, 84051 Essenbach')"><div class="termin-datum"><span class="termin-tag">FR–SO</span><span class="termin-day">04–06.09.</span></div><div class="termin-info"><span class="termin-titel">⭐ Chippingdale-Open</span><span class="termin-ort">📍 Leonhardshaun, 84051 Essenbach</span></div><button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Leonhardshaun,+84051+Essenbach')" class="btn-maps">🗺</button><div class="termin-arrow">＋</div></div>
+        <div class="termin-card" onclick="addToCalendar('Chippingdales – Platz 9-Loch GC Haghof','20260909T180000','20260909T213000','GC Haghof, Haghof 5, 73553 Alfdorf')"><div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">09.09.</span></div><div class="termin-info"><span class="termin-titel">Platz: 9-Loch</span><span class="termin-ort">📍 GC Haghof, Alfdorf · 18:00 Uhr · 35,- €</span></div><button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Haghof+5,+73553+Alfdorf')" class="btn-maps">🗺</button><div class="termin-arrow">＋</div></div>
+        <div class="termin-card training" onclick="addToCalendar('Chippingdales – Training mit Heinz','20260916T173000','20260916T210000','GolfKultur, Am Sportpark 1, 70329 Stuttgart')"><div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">16.09.</span></div><div class="termin-info"><span class="termin-titel">Training mit Heinz</span><span class="termin-ort">📍 GolfKultur Stuttgart · 17:30 Uhr · 18,- €</span></div><button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Am+Sportpark+1,+70329+Stuttgart-Hedelfingen')" class="btn-maps">🗺</button><div class="termin-arrow">＋</div></div>
+        <div class="termin-card" onclick="addToCalendar('Chippingdales – Platz Kurzplatz GC Hetzenhof','20260923T180000','20260923T213000','GC Hetzenhof, Am Hetzenhof 5, 73547 Lorch')"><div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">23.09.</span></div><div class="termin-info"><span class="termin-titel">Platz: Kurzplatz</span><span class="termin-ort">📍 GC Hetzenhof, Lorch · 18:00 Uhr · 20,- €</span></div><button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Am+Hetzenhof+5,+73547+Lorch')" class="btn-maps">🗺</button><div class="termin-arrow">＋</div></div>
+        <div class="termin-card special" onclick="addToCalendar('Chippingdales Oktoberfest','20260925T120000','20260925T230000','Cannstatter Wasen, Stuttgart')"><div class="termin-datum"><span class="termin-tag">FR</span><span class="termin-day">25.09.</span></div><div class="termin-info"><span class="termin-titel">⭐ Chippingdales Oktoberfest</span><span class="termin-ort">📍 Cannstatter Wasen, Stuttgart · 70,- €</span></div><button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Cannstatter+Wasen,+Stuttgart')" class="btn-maps">🗺</button><div class="termin-arrow">＋</div></div>
+        <div class="termin-card training" onclick="addToCalendar('Chippingdales – Training mit Heinz','20260930T173000','20260930T210000','GolfKultur, Am Sportpark 1, 70329 Stuttgart')"><div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">30.09.</span></div><div class="termin-info"><span class="termin-titel">Training mit Heinz</span><span class="termin-ort">📍 GolfKultur Stuttgart · 17:30 Uhr · 18,- €</span></div><button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Am+Sportpark+1,+70329+Stuttgart-Hedelfingen')" class="btn-maps">🗺</button><div class="termin-arrow">＋</div></div>
         </div>
 
-        <div class="termine-gruppe">
-            <div class="termine-gruppe-label"><span class="cat-dot"></span>OKTOBER – DEZEMBER</div>
-
-            <div class="termin-card special" onclick="addToCalendar('Chippingdales – Wein und Golfen Bardolino','20261001T090000','20261005T180000','Bardolino')">
-                <div class="termin-datum"><span class="termin-tag">DO-MO</span><span class="termin-day">01–05.10.</span></div>
-                <div class="termin-info"><span class="termin-titel">⭐ Wein und Golfen</span><span class="termin-ort">📍 Bardolino</span></div>
-                <button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Golfclub+Bardolino,+Bardolino,+Italia')" class="btn-maps">🗺</button>
-                <div class="termin-arrow">＋</div>
-            </div>
-
-            <div class="termin-card special" onclick="addToCalendar('Chippingdales Weihnachtsfeier','20261127T180000','20261127T230000','Waiblingen')">
-                <div class="termin-datum"><span class="termin-tag">FR</span><span class="termin-day">27.11.</span></div>
-                <div class="termin-info"><span class="termin-titel">🎄 Weihnachtsfeier</span><span class="termin-ort">📍 Waiblingen</span></div>
-                <button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Golfclub+Bardolino,+Bardolino,+Italia')" class="btn-maps">🗺</button>
-                <div class="termin-arrow">＋</div>
-            </div>
-
-            <div class="termin-card special" onclick="addToCalendar('Chippingdales Nikolausparty','20261204T180000','20261204T230000','Dettingen')">
-                <div class="termin-datum"><span class="termin-tag">FR/SA</span><span class="termin-day">04/05.12.</span></div>
-                <div class="termin-info"><span class="termin-titel">🎅 Nikolausparty</span><span class="termin-ort">📍 Dettingen · noch offen</span></div>
-                <button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Golfclub+Bardolino,+Bardolino,+Italia')" class="btn-maps">🗺</button>
-                <div class="termin-arrow">＋</div>
-            </div>
+        <div class="termine-gruppe"><div class="termine-gruppe-label"><span class="cat-dot"></span>OKTOBER – DEZEMBER</div>
+        <div class="termin-card special" onclick="addToCalendar('Chippingdales – Wein und Golfen Bardolino','20261001T090000','20261005T180000','Bardolino, Gardasee, Italia')"><div class="termin-datum"><span class="termin-tag">DO–MO</span><span class="termin-day">01–05.10.</span></div><div class="termin-info"><span class="termin-titel">⭐ Wein und Golfen</span><span class="termin-ort">📍 Bardolino, Gardasee (IT)</span></div><button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Bardolino,+Gardasee,+Italia')" class="btn-maps">🗺</button><div class="termin-arrow">＋</div></div>
+        <div class="termin-card special" onclick="addToCalendar('Chippingdales Weihnachtsfeier','20261127T180000','20261127T230000','Donner Partner, Stuttgarter Str. 108, 71332 Waiblingen')"><div class="termin-datum"><span class="termin-tag">FR</span><span class="termin-day">27.11.</span></div><div class="termin-info"><span class="termin-titel">🎄 Weihnachtsfeier</span><span class="termin-ort">📍 Donner Partner, Stuttgarter Str. 108, Waiblingen</span></div><button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Stuttgarter+Str.+108,+71332+Waiblingen')" class="btn-maps">🗺</button><div class="termin-arrow">＋</div></div>
+        <div class="termin-card special" onclick="addToCalendar('Chippingdales Nikolausparty','20261204T180000','20261204T230000','Autozentrum, Kirchheimer Str. 176/1, 73265 Dettingen')"><div class="termin-datum"><span class="termin-tag">FR/SA</span><span class="termin-day">04/05.12.</span></div><div class="termin-info"><span class="termin-titel">🎅 Nikolausparty</span><span class="termin-ort">📍 Autozentrum, Kirchheimer Str. 176/1, Dettingen</span></div><button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Kirchheimer+Str.+176,+73265+Dettingen')" class="btn-maps">🗺</button><div class="termin-arrow">＋</div></div>
         </div>
 
         <div style="height:30px;"></div>
     </div>
-
 </div>
 
 
