@@ -29,7 +29,7 @@ window.onload = function () {
 // SCREEN NAVIGATION
 // ─────────────────────────────────────────────
 function showScreen(id) {
-    ['landing-screen', 'start-screen', 'video-screen', 'quiz-screen', 'rules-screen', 'main-app'].forEach(function (s) {
+    ['landing-screen', 'start-screen', 'video-screen', 'quiz-screen', 'rules-screen', 'termine-screen', 'main-app'].forEach(function (s) {
         var el = document.getElementById(s);
         if (el) el.classList.add('hidden');
     });
@@ -49,6 +49,10 @@ function goToLogin() {
 
 function goToVideos() {
     showScreen('video-screen');
+}
+
+function goToTermine() {
+    showScreen('termine-screen');
 }
 
 function goToRules() {
@@ -220,4 +224,35 @@ function closeRulesVideo() {
     if (iframe) iframe.src = '';
     var modal = document.getElementById('rules-video-modal');
     if (modal) modal.classList.add('hidden');
+}
+
+// ─────────────────────────────────────────────
+// KALENDER INTEGRATION
+// ─────────────────────────────────────────────
+function addToCalendar(titel, start, end, ort) {
+    var beschreibung = 'Chippingdales Golf Club – ' + titel;
+    // ICS-Datei generieren (funktioniert auf iOS, Android, Outlook, Google)
+    var ics = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Chippingdales//Golf App//DE',
+        'BEGIN:VEVENT',
+        'DTSTART:' + start,
+        'DTEND:' + end,
+        'SUMMARY:' + titel,
+        'DESCRIPTION:' + beschreibung,
+        'LOCATION:' + ort,
+        'END:VEVENT',
+        'END:VCALENDAR'
+    ].join('\r\n');
+
+    var blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+    var url  = URL.createObjectURL(blob);
+    var a    = document.createElement('a');
+    a.href   = url;
+    a.download = titel.replace(/[^a-z0-9]/gi, '_') + '.ics';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
 }
