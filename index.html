@@ -69,6 +69,15 @@
                 </div>
                 <div class="lc-arrow">→</div>
             </button>
+
+            <button onclick="goToRules()" class="landing-card landing-card--rules">
+                <div class="lc-icon">📖</div>
+                <div class="lc-body">
+                    <span class="lc-title">REGELVIDEOS</span>
+                    <span class="lc-sub">Golfregeln einfach erklärt</span>
+                </div>
+                <div class="lc-arrow">→</div>
+            </button>
         </div>
 
         <p class="landing-footer">Golf Club Chippingdales &nbsp;·&nbsp; Since 2021</p>
@@ -355,6 +364,72 @@
         <div id="quiz-area"></div>
         <button id="next-btn" class="hidden">Nächste Frage</button>
         <div style="height:30px;"></div>
+    </div>
+
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     SCREEN 5: REGELVIDEOS
+══════════════════════════════════════════ -->
+<div id="rules-screen" class="hidden video-screen">
+
+    <div class="video-header">
+        <button onclick="backToLanding()" class="btn-back">← HAUPTMENÜ</button>
+        <div class="video-header-center">
+            <img src="logo.png" class="logo-small">
+            <span class="video-screen-title">REGELVIDEOS</span>
+        </div>
+    </div>
+
+    <div class="video-body">
+        <p class="video-intro">Golfregeln einfach & kompakt erklärt.<br>Tippe auf ein Video zum Abspielen.</p>
+
+        <!-- GRUNDLAGEN -->
+        <div class="video-category">
+            <div class="category-label"><span class="cat-dot"></span>GRUNDLAGEN</div>
+            <div class="video-grid">
+
+                <div class="video-card" onclick="openRulesVideo('7m5SgmfQSDA')">
+                    <div class="vc-thumb">
+                        <img src="https://img.youtube.com/vi/7m5SgmfQSDA/mqdefault.jpg" alt="">
+                        <div class="vc-play">▶</div>
+                    </div>
+                    <div class="vc-info">
+                        <span class="vc-title">Grundlagen Teil 1</span>
+                        <span class="vc-channel">Golfregeln erklärt</span>
+                    </div>
+                </div>
+
+                <div class="video-card" onclick="openRulesVideo('JI1FgDNqY38')">
+                    <div class="vc-thumb">
+                        <img src="https://img.youtube.com/vi/JI1FgDNqY38/mqdefault.jpg" alt="">
+                        <div class="vc-play">▶</div>
+                    </div>
+                    <div class="vc-info">
+                        <span class="vc-title">Grundlagen Teil 2</span>
+                        <span class="vc-channel">Golfregeln erklärt</span>
+                    </div>
+                </div>
+
+                <!-- HIER WEITERE REGELVIDEOS EINFÜGEN -->
+
+            </div>
+        </div>
+
+        <div style="height:30px;"></div>
+    </div>
+
+    <!-- Video Modal (in-app player) -->
+    <div id="rules-video-modal" class="modal hidden">
+        <div class="video-modal-content">
+            <button onclick="closeRulesVideo()" class="btn-video-close">✖ SCHLIESSEN</button>
+            <div class="video-embed-wrap">
+                <iframe id="rules-video-iframe" src="" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
     </div>
 
 </div>

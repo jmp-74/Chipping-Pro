@@ -29,7 +29,7 @@ window.onload = function () {
 // SCREEN NAVIGATION
 // ─────────────────────────────────────────────
 function showScreen(id) {
-    ['landing-screen', 'start-screen', 'video-screen', 'quiz-screen', 'main-app'].forEach(function (s) {
+    ['landing-screen', 'start-screen', 'video-screen', 'quiz-screen', 'rules-screen', 'main-app'].forEach(function (s) {
         var el = document.getElementById(s);
         if (el) el.classList.add('hidden');
     });
@@ -49,6 +49,10 @@ function goToLogin() {
 
 function goToVideos() {
     showScreen('video-screen');
+}
+
+function goToRules() {
+    showScreen('rules-screen');
 }
 
 function goToQuiz() {
@@ -199,5 +203,21 @@ function closeVideo() {
     var iframe = document.getElementById('video-iframe');
     if (iframe) iframe.src = '';
     var modal = document.getElementById('video-modal');
+    if (modal) modal.classList.add('hidden');
+}
+
+// ─────────────────────────────────────────────
+// REGELVIDEOS PLAYER
+// ─────────────────────────────────────────────
+function openRulesVideo(videoId) {
+    document.getElementById('rules-video-iframe').src =
+        'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0';
+    document.getElementById('rules-video-modal').classList.remove('hidden');
+}
+
+function closeRulesVideo() {
+    var iframe = document.getElementById('rules-video-iframe');
+    if (iframe) iframe.src = '';
+    var modal = document.getElementById('rules-video-modal');
     if (modal) modal.classList.add('hidden');
 }
