@@ -463,3 +463,40 @@ body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; background: var(
     font-size: 0.44rem; color: #444;
     letter-spacing: 2px; text-transform: uppercase;
 }
+
+/* ══════════════════════════════════════
+   WETTERLEISTE
+══════════════════════════════════════ */
+.wetter-leiste {
+    background: linear-gradient(135deg, #0a0a0a, #111);
+    border: 1px solid #222;
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+}
+
+.wetter-loading, .wetter-error {
+    font-size: 0.62rem; color: #555; text-align: center; padding: 6px 0;
+}
+
+.wetter-ort {
+    font-size: 0.58rem; color: var(--gold); font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.wetter-tage {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;
+}
+
+.wetter-tag {
+    background: #0a0a0a; border: 1px solid #1a1a1a;
+    border-radius: 8px; padding: 8px 6px;
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+}
+
+.wt-day  { font-size: 0.52rem; font-weight: 800; color: #666; letter-spacing: 1px; }
+.wt-icon { font-size: 1.4rem; line-height: 1; }
+.wt-temp { font-size: 0.65rem; font-weight: 700; color: #ddd; }
+.wt-regen{ font-size: 0.5rem; color: #555; }
+.wt-golf { font-size: 0.48rem; font-weight: 800; text-align: center; letter-spacing: 0.5px; }

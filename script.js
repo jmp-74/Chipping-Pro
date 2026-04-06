@@ -53,6 +53,7 @@ function goToVideos() {
 
 function goToTermine() {
     showScreen('termine-screen');
+    loadWetter();
 }
 
 function goToRules() {
@@ -273,4 +274,125 @@ function goToHcp() {
 
 function openHcp(url) {
     window.open(url, '_blank');
+}
+
+// ─────────────────────────────────────────────
+// WETTER (Open-Meteo API – kostenlos, kein Key)
+// ─────────────────────────────────────────────
+function loadWetter() {
+    var el = document.getElementById('wetter-leiste');
+    if (!el) return;
+
+    if (!navigator.geolocation) {
+        el.innerHTML = '<div class="wetter-error">📍 Standort nicht verfügbar</div>';
+        return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+        function(pos) {
+            var lat = pos.coords.latitude.toFixed(4);
+            var lon = pos.coords.longitude.toFixed(4);
+            fetchWetter(lat, lon);
+        },
+        function() {
+            // Fallback: Stuttgart
+            fetchWetter('48.7758', '9.1829');
+        },
+        { timeout: 8000 }
+    );
+}
+
+function fetchWetter(lat, lon) {
+    var url = 'https://api.open-meteo.com/v1/forecast'
+        + '?latitude=' + lat
+        + '&longitude=' + lon
+        + '&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_sum,windspeed_10m_max'
+        + '&timezone=Europe%2FBerlin'
+        + '&forecast_days=3';
+
+    fetch(url)
+        .then(function(r) { return r.json(); })
+        .then(function(data) { renderWetter(data, lat, lon); })
+        .catch(function() {
+            var el = document.getElementById('wetter-leiste');
+            if (el) el.innerHTML = '<div class="wetter-error">⚠ Wetter nicht verfügbar</div>';
+        });
+}
+
+function renderWetter(data, lat, lon) {
+    var el = document.getElementById('wetter-leiste');
+    if (!el) return;
+
+    var codes = data.daily.weathercode;
+    var maxT   = data.daily.temperature_2m_max;
+    var minT   = data.daily.temperature_2m_min;
+    var rain   = data.daily.precipitation_sum;
+    var wind   = data.daily.windspeed_10m_max;
+    var dates  = data.daily.time;
+
+    function wetterIcon(code) {
+        if (code === 0)              return '☀️';
+        if (code <= 2)               return '🌤️';
+        if (code === 3)              return '☁️';
+        if (code <= 49)              return '🌫️';
+        if (code <= 59)              return '🌦️';
+        if (code <= 69)              return '🌧️';
+        if (code <= 79)              return '❄️';
+        if (code <= 82)              return '🌧️';
+        if (code <= 84)              return '🌨️';
+        if (code <= 99)              return '⛈️';
+        return '🌡️';
+    }
+
+    function golfEignung(code, regen, windSpeed) {
+        if (code >= 80 || regen > 5) return { text: 'Schlechte Bedingungen', col: '#ff4d4d' };
+        if (code >= 61 || regen > 1) return { text: 'Bedingt spielbar', col: '#ffa726' };
+        if (windSpeed > 40)          return { text: 'Sehr windig', col: '#ffa726' };
+        if (code <= 2 && regen === 0) return { text: 'Ideale Bedingungen ⛳', col: '#2ecc71' };
+        return { text: 'Gute Bedingungen', col: '#2ecc71' };
+    }
+
+    function tagName(dateStr, i) {
+        if (i === 0) return 'HEUTE';
+        if (i === 1) return 'MORGEN';
+        var d = new Date(dateStr);
+        var tage = ['SO', 'MO', 'DI', 'MI', 'DO', 'FR', 'SA'];
+        return tage[d.getDay()];
+    }
+
+    // Ortsname per Reverse Geocoding
+    fetch('https://nominatim.openstreetmap.org/reverse?lat=' + lat + '&lon=' + lon + '&format=json')
+        .then(function(r) { return r.json(); })
+        .then(function(geo) {
+            var ort = geo.address.city || geo.address.town || geo.address.village || geo.address.county || 'Aktueller Standort';
+            var html = '<div class="wetter-ort">📍 ' + ort + '</div><div class="wetter-tage">';
+            for (var i = 0; i < 3; i++) {
+                var eg = golfEignung(codes[i], rain[i], wind[i]);
+                html += '<div class="wetter-tag">'
+                    + '<span class="wt-day">' + tagName(dates[i], i) + '</span>'
+                    + '<span class="wt-icon">' + wetterIcon(codes[i]) + '</span>'
+                    + '<span class="wt-temp">' + Math.round(maxT[i]) + '° / ' + Math.round(minT[i]) + '°</span>'
+                    + '<span class="wt-regen">' + (rain[i] > 0 ? '💧 ' + rain[i].toFixed(1) + 'mm' : '🌵 trocken') + '</span>'
+                    + '<span class="wt-golf" style="color:' + eg.col + '">' + eg.text + '</span>'
+                    + '</div>';
+            }
+            html += '</div>';
+            el.innerHTML = html;
+        })
+        .catch(function() {
+            // Ohne Ortsname anzeigen
+            var html = '<div class="wetter-ort">📍 Wetter</div><div class="wetter-tage">';
+            for (var i = 0; i < 3; i++) {
+                var eg = golfEignung(codes[i], rain[i], wind[i]);
+                html += '<div class="wetter-tag">'
+                    + '<span class="wt-day">' + tagName(dates[i], i) + '</span>'
+                    + '<span class="wt-icon">' + wetterIcon(codes[i]) + '</span>'
+                    + '<span class="wt-temp">' + Math.round(maxT[i]) + '° / ' + Math.round(minT[i]) + '°</span>'
+                    + '<span class="wt-regen">' + (rain[i] > 0 ? '💧 ' + rain[i].toFixed(1) + 'mm' : '🌵 trocken') + '</span>'
+                    + '<span class="wt-golf" style="color:' + eg.col + '">' + eg.text + '</span>'
+                    + '</div>';
+            }
+            html += '</div>';
+            el.innerHTML = html;
+        });
 }
