@@ -104,6 +104,11 @@
             <span class="landing-claim-sub">Trainiere. Lerne. Spiele besser.</span>
         </div>
 
+        <div class="landing-legal-row">
+            <button onclick="goToImpressum()" class="btn-legal">📋 Impressum</button>
+            <button onclick="goToNutzung()" class="btn-legal">⚖️ Nutzung & KI-Hinweis</button>
+        </div>
+
         <p class="landing-footer">Golf Club Chippingdales &nbsp;·&nbsp; Since 2021</p>
     </div>
 </div>
@@ -699,6 +704,125 @@
         <div style="height:30px;"></div>
     </div>
 
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     SCREEN: IMPRESSUM
+══════════════════════════════════════════ -->
+<div id="impressum-screen" class="hidden legal-screen">
+    <div class="video-header">
+        <button onclick="backToLanding()" class="btn-back">← HAUPTMENÜ</button>
+        <div class="video-header-center">
+            <img src="logo.png" class="logo-small">
+            <span class="video-screen-title">IMPRESSUM</span>
+        </div>
+    </div>
+    <div class="legal-body">
+
+        <div class="legal-card">
+            <h3 class="legal-title">Angaben gemäß § 5 TMG</h3>
+            <p><strong>Betriebssportverein Chippingdales e.V.</strong></p>
+            <p>Stuttgarter Str. 108<br>71332 Waiblingen<br>Deutschland</p>
+        </div>
+
+        <div class="legal-card">
+            <h3 class="legal-title">Vereinsregister</h3>
+            <p>Registernummer: <strong>VR 725372</strong><br>
+            Registergericht: <strong>Amtsgericht Stuttgart</strong><br>
+            Eingetragen am: 28.12.2021</p>
+        </div>
+
+        <div class="legal-card">
+            <h3 class="legal-title">Vorstand & Ansprechpartner</h3>
+            <p>1. Vorsitzender: <strong>Jean Michel Prothmann</strong><br>
+            2. Vorsitzender: <strong>Thomas Roß</strong></p>
+            <p style="margin-top:8px;">E-Mail: <a href="mailto:vorstand@chippingdales.de" style="color:var(--gold);">vorstand@chippingdales.de</a></p>
+        </div>
+
+        <div class="legal-card">
+            <h3 class="legal-title">Vereinszweck</h3>
+            <p>Förderung des Sports gemäß § 52 Abs. 2 Nr. 21 AO.<br>
+            Der Verein ist als gemeinnützig anerkannt.</p>
+        </div>
+
+        <div class="legal-card">
+            <h3 class="legal-title">Haftungsausschluss</h3>
+            <p>Die Inhalte dieser App wurden mit größtmöglicher Sorgfalt erstellt. 
+            Der Betriebssportverein Chippingdales e.V. übernimmt jedoch keine Haftung 
+            für die Richtigkeit, Vollständigkeit und Aktualität der bereitgestellten Inhalte.</p>
+        </div>
+
+        <div style="height:30px;"></div>
+    </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SCREEN: NUTZUNG & KI-HINWEIS
+══════════════════════════════════════════ -->
+<div id="nutzung-screen" class="hidden legal-screen">
+    <div class="video-header">
+        <button onclick="backToLanding()" class="btn-back">← HAUPTMENÜ</button>
+        <div class="video-header-center">
+            <img src="logo.png" class="logo-small">
+            <span class="video-screen-title">NUTZUNG & KI-HINWEIS</span>
+        </div>
+    </div>
+    <div class="legal-body">
+
+        <div class="legal-card legal-card--ki">
+            <div class="legal-ki-icon">🤖</div>
+            <h3 class="legal-title">KI-gestützte App</h3>
+            <p>Diese App wurde mit Unterstützung von <strong>Künstlicher Intelligenz (KI)</strong> 
+            entwickelt. Alle Inhalte – insbesondere Regelinterpretationen, Handicap-Berechnungen, 
+            Trainingsdaten und Videoempfehlungen – werden <strong>ohne Gewähr</strong> bereitgestellt.</p>
+            <p style="margin-top:8px;"><strong>Die KI kann Fehler machen.</strong> Bitte prüfe 
+            wichtige Regelangaben immer anhand der offiziellen DGV-Regelwerke.</p>
+        </div>
+
+        <div class="legal-card">
+            <h3 class="legal-title">Nutzungsbedingungen</h3>
+            <p>Diese App ist <strong>ausschließlich zur privaten Nutzung</strong> bestimmt – 
+            von Golfern für Golfer. Sie richtet sich an die Mitglieder der Chippingdales 
+            und deren Freunde.</p>
+            <ul class="legal-list">
+                <li>Keine kommerzielle Nutzung</li>
+                <li>Keine Weitergabe oder Veröffentlichung der App-Inhalte</li>
+                <li>Nutzung auf eigene Verantwortung</li>
+            </ul>
+        </div>
+
+        <div class="legal-card">
+            <h3 class="legal-title">Haftungsausschluss</h3>
+            <p>Der <strong>Betriebssportverein Chippingdales e.V.</strong> übernimmt 
+            <strong>keinerlei Haftung</strong> für:</p>
+            <ul class="legal-list">
+                <li>Fehlerhafte oder veraltete Regelangaben</li>
+                <li>Falsch berechnete Handicap-Werte</li>
+                <li>Inhalte verlinkter YouTube-Videos</li>
+                <li>Datenverluste durch App-Reset oder Browser-Cache</li>
+                <li>Schäden die durch die Nutzung dieser App entstehen</li>
+            </ul>
+        </div>
+
+        <div class="legal-card">
+            <h3 class="legal-title">Datenschutz</h3>
+            <p>Die App speichert ausschließlich deine <strong>lokal eingegebenen Trainingsdaten</strong> 
+            im Browser (localStorage). Es werden <strong>keine Daten an Server übertragen</strong> 
+            oder gespeichert. Eine Registrierung ist nicht erforderlich.</p>
+            <p style="margin-top:8px;">Wetterdaten werden anonym über die Open-Meteo API abgerufen. 
+            Es werden keine personenbezogenen Daten weitergegeben.</p>
+        </div>
+
+        <div class="legal-card">
+            <h3 class="legal-title">Kontakt</h3>
+            <p>Betriebssportverein Chippingdales e.V.<br>
+            Stuttgarter Str. 108, 71332 Waiblingen<br>
+            E-Mail: <a href="mailto:vorstand@chippingdales.de" style="color:var(--gold);">vorstand@chippingdales.de</a></p>
+        </div>
+
+        <div style="height:30px;"></div>
+    </div>
 </div>
 
 

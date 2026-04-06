@@ -29,7 +29,7 @@ window.onload = function () {
 // SCREEN NAVIGATION
 // ─────────────────────────────────────────────
 function showScreen(id) {
-    ['landing-screen', 'start-screen', 'video-screen', 'quiz-screen', 'rules-screen', 'termine-screen', 'hcp-screen', 'main-app'].forEach(function (s) {
+    ['landing-screen', 'start-screen', 'video-screen', 'quiz-screen', 'rules-screen', 'termine-screen', 'hcp-screen', 'impressum-screen', 'nutzung-screen', 'main-app'].forEach(function (s) {
         var el = document.getElementById(s);
         if (el) el.classList.add('hidden');
     });
@@ -54,6 +54,14 @@ function goToVideos() {
 function goToTermine() {
     showScreen('termine-screen');
     loadWetter();
+}
+
+function goToImpressum() {
+    showScreen('impressum-screen');
+}
+
+function goToNutzung() {
+    showScreen('nutzung-screen');
 }
 
 function goToRules() {
