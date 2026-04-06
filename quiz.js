@@ -1590,8 +1590,14 @@ function loadQuestion(questionData) {
         </div>
         <h2>${questionData.section}</h2>
         
-        <div class="image-placeholder">
-            [Bild: ${questionData.image_query}]
+        <div class="quiz-img-wrap">
+            <img 
+                src="https://source.unsplash.com/featured/600x280/?golf,${encodeURIComponent(questionData.image_query)}"
+                alt="${questionData.image_query}"
+                class="quiz-img"
+                onerror="this.style.display='none'"
+                loading="lazy"
+            >
         </div>
         
         <p class="question-text">${questionData.question}</p>
