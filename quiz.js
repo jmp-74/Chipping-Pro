@@ -1555,14 +1555,26 @@ function displayFinalResult() {
         `;
     }
 
+    var savedProf = localStorage.getItem('cp_final_elite_v10');
+    var resultName = savedProf ? JSON.parse(savedProf).name : '';
+    var resultTitle = resultName ? 'Auswertung für ' + resultName : 'Auswertung';
+
+    // Score-Farbe
+    var scoreColor = percentage >= 85 ? '#2ecc71' : percentage >= 60 ? '#ffa726' : '#ff4d4d';
+
     getQuizArea().innerHTML = `
-        <h2>📋 Auswertung der Golfregeln</h2>
-        <p class="subtitle">Deine Leistung: ${correctAnswersCount} von ${totalQuestions} Fragen (${percentage.toFixed(0)}%)</p>
-        
-        <div class="explanation" style="background-color: #f0fff0; color: #1a1a1a;">
-            <p style="font-size: 1.1em; font-weight: 600;">${evaluationText}</p>
+        <div class="quiz-result-header">
+            <div class="quiz-result-icon">🏌️</div>
+            <h2 class="quiz-result-title">${resultTitle}</h2>
+            <div class="quiz-result-score" style="color:${scoreColor}">
+                ${correctAnswersCount} / ${totalQuestions}
+            </div>
+            <div class="quiz-result-pct" style="color:${scoreColor}">${percentage.toFixed(0)}% richtig</div>
+            <div class="quiz-result-bar-wrap">
+                <div class="quiz-result-bar-fill" style="width:${percentage.toFixed(0)}%; background:${scoreColor}"></div>
+            </div>
         </div>
-        
+        <div class="quiz-result-text">${evaluationText}</div>
         ${incorrectListHtml}
     `;
 
@@ -1585,8 +1597,14 @@ function loadQuestion(questionData) {
 
     card.innerHTML = `
         <div class="progress-box">
-            <p>Gesamtfragen: ${questionNumber} von ${quizData.length} Fragen.</p>
-            <p>Abschnitt "${currentSection}": ${remainingInSection} Fragen verbleibend (von ${totalSectionQuestions})</p>
+            <div class="progress-header">
+                <span>Frage ${questionNumber} von ${quizData.length}</span>
+                <span>${Math.round((questionNumber / quizData.length) * 100)}%</span>
+            </div>
+            <div class="progress-bar-wrap">
+                <div class="progress-bar-fill" style="width: ${Math.round((questionNumber / quizData.length) * 100)}%"></div>
+            </div>
+            <div class="progress-section">📖 ${currentSection}</div>
         </div>
         <h2>${questionData.section}</h2>
         
@@ -1728,13 +1746,25 @@ function displayModuleSelection() {
         `;
     }).join('');
 
+    // Name aus localStorage holen
+    var savedProfile = localStorage.getItem('cp_final_elite_v10');
+    var userName = savedProfile ? JSON.parse(savedProfile).name : '';
+    var welcomeMsg = userName
+        ? 'Willkommen, ' + userName + '! 👋'
+        : 'Willkommen beim Golf-Regelquiz! 👋';
+
     getQuizArea().innerHTML = `
-        <h2>Wählen Sie Ihr Trainingsmodul:</h2>
+        <div class="quiz-welcome-box">
+            <div class="quiz-welcome-icon">⛳</div>
+            <h2 class="quiz-welcome-title">${welcomeMsg}</h2>
+            <p class="quiz-welcome-text">Teste dein Wissen zu den offiziellen Golfregeln 2023–2027.<br>
+            Wähle ein Modul oder starte das Komplett-Quiz mit allen <strong>${currentQuizData.length} Fragen</strong>.</p>
+        </div>
         <div id="module-buttons-container" class="options module-selection-grid">
             ${modulesHtml}
         </div>
         <button id="start-full-quiz-btn" class="module-btn full-quiz-btn" data-module-index="full">
-            Alle ${currentQuizData.length} Fragen üben (Komplett-Quiz)
+            🏆 Alle ${currentQuizData.length} Fragen üben (Komplett-Quiz)
         </button>
     `;
 
