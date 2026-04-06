@@ -49,11 +49,19 @@ function goToLogin() {
 
 function goToVideos() {
     showScreen('video-screen');
+    var saved = localStorage.getItem('cp_final_elite_v10');
+    var n = saved ? JSON.parse(saved).name : '';
+    var el = document.getElementById('wb-video-title');
+    if (el && n) el.innerText = 'Willkommen, ' + n + '! 🎬';
 }
 
 function goToTermine() {
     showScreen('termine-screen');
     loadWetter();
+    var saved = localStorage.getItem('cp_final_elite_v10');
+    var n = saved ? JSON.parse(saved).name : '';
+    var el = document.getElementById('wb-termine-title');
+    if (el && n) el.innerText = 'Willkommen, ' + n + '! 📅';
 }
 
 function goToImpressum() {
@@ -66,6 +74,10 @@ function goToNutzung() {
 
 function goToRules() {
     showScreen('rules-screen');
+    var saved = localStorage.getItem('cp_final_elite_v10');
+    var n = saved ? JSON.parse(saved).name : '';
+    var el = document.getElementById('wb-rules-title');
+    if (el && n) el.innerText = 'Willkommen, ' + n + '! 📖';
 }
 
 function goToQuiz() {
@@ -100,6 +112,8 @@ function autoStartApp() {
     document.getElementById('display-hcp').innerText = "HCP: " + user.hcp;
     document.getElementById('gender-tag').innerText = user.gender === 'women' ? "DAMEN" : "HERREN";
     document.getElementById('welcome-message').innerText = "GUTEN TAG, " + user.name.toUpperCase() + "!";
+    var wbT = document.getElementById('wb-training-title');
+    if (wbT) wbT.innerText = 'Guten Tag, ' + user.name + '! 👋';
     document.getElementById('live-date-header').innerText = new Date().toLocaleDateString('de-DE');
     initInputs();
     initRefs(user.gender);
@@ -278,6 +292,10 @@ function openMaps(url) {
 // ─────────────────────────────────────────────
 function goToHcp() {
     showScreen('hcp-screen');
+    var saved = localStorage.getItem('cp_final_elite_v10');
+    var n = saved ? JSON.parse(saved).name : '';
+    var el = document.getElementById('wb-hcp-title');
+    if (el && n) el.innerText = 'Willkommen, ' + n + '! 🧮';
 }
 
 function openHcp(url) {

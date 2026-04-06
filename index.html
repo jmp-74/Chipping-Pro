@@ -153,6 +153,11 @@
     </div>
 
     <div class="video-body">
+        <div class="welcome-box" id="wb-video">
+            <div class="wb-icon">🎬</div>
+            <h2 class="wb-title" id="wb-video-title">Willkommen in der Video Academy!</h2>
+            <p class="wb-text">Hier findest du handverlesene Trainingsvideos von Top-Coaches – von den Grundlagen bis zum Slice-Fix. Tippe auf ein Video und lerne direkt auf dem Sofa oder unterwegs.</p>
+        </div>
         <p class="video-intro">Tippe auf ein Video zum Abspielen.</p>
 
         <!-- GRUNDLAGEN -->
@@ -442,6 +447,11 @@
     </div>
 
     <div class="video-body">
+        <div class="welcome-box" id="wb-rules">
+            <div class="wb-icon">📖</div>
+            <h2 class="wb-title" id="wb-rules-title">Willkommen bei den Regelvideos!</h2>
+            <p class="wb-text">Golfregeln müssen nicht trocken sein! Unsere Video-Sammlung erklärt die offiziellen Regeln 2023–2027 kurz und verständlich – ideal zur Vorbereitung auf Turnier und Platz.</p>
+        </div>
         <p class="video-intro">Golfregeln einfach & kompakt erklärt.<br>Tippe auf ein Video zum Abspielen.</p>
 
         <!-- GRUNDLAGEN -->
@@ -565,6 +575,15 @@
         <button onclick="backToLanding()" class="btn-back">← HAUPTMENÜ</button>
         <div class="video-header-center"><img src="logo.png" class="logo-small"><span class="video-screen-title">TERMINE 2026</span></div>
     </div>
+    <!-- Willkommen Termine -->
+    <div class="termine-welcome-wrap">
+        <div class="welcome-box" id="wb-termine">
+            <div class="wb-icon">📅</div>
+            <h2 class="wb-title" id="wb-termine-title">Willkommen bei den Terminen 2026!</h2>
+            <p class="wb-text">Alle Chippingdales-Events auf einen Blick. Tippe auf einen Termin um ihn direkt in deinen Kalender zu speichern – oder auf 🗺 für die Navigation zum Golfplatz.</p>
+        </div>
+    </div>
+
     <!-- Wetterleiste FIXIERT -->
     <div class="termine-wetter-fixed">
         <p class="video-intro" style="margin:0 0 8px;">Tippe auf einen Termin → Kalender &nbsp;|&nbsp; 🗺 → Navigation</p>
@@ -636,6 +655,11 @@
     </div>
 
     <div class="hcp-body">
+        <div class="welcome-box" id="wb-hcp">
+            <div class="wb-icon">🧮</div>
+            <h2 class="wb-title" id="wb-hcp-title">Willkommen beim Handicap Rechner!</h2>
+            <p class="wb-text">Berechne dein aktuelles Handicap direkt nach der Runde. Wähle deinen Golfclub – der Rechner öffnet mit der passenden Scorekarte und berechnet deine neue Stammvorgabe.</p>
+        </div>
         <p class="video-intro">Wähle deinen Golfplatz – der Rechner öffnet<br>direkt mit Scorekarte & HCP-Berechnung.</p>
 
         <div class="hcp-gruppe">
@@ -737,7 +761,7 @@
             <h3 class="legal-title">Vorstand & Ansprechpartner</h3>
             <p>1. Vorsitzender: <strong>Jean Michel Prothmann</strong><br>
             2. Vorsitzender: <strong>Thomas Roß</strong></p>
-            <p style="margin-top:8px;">E-Mail: <a href="mailto:vorstand@chippingdales.de" style="color:var(--gold);">vorstand@chippingdales.de</a></p>
+            <p style="margin-top:8px;">E-Mail: <a href="/cdn-cgi/l/email-protection#2d5b425f5e594c43496d4e45445d5d44434a494c41485e034948" style="color:var(--gold);"><span class="__cf_email__" data-cfemail="d3a5bca1a0a7b2bdb793b0bbbaa3a3babdb4b7b2bfb6a0fdb7b6">[email&#160;protected]</span></a></p>
         </div>
 
         <div class="legal-card">
@@ -818,7 +842,7 @@
             <h3 class="legal-title">Kontakt</h3>
             <p>Betriebssportverein Chippingdales e.V.<br>
             Stuttgarter Str. 108, 71332 Waiblingen<br>
-            E-Mail: <a href="mailto:vorstand@chippingdales.de" style="color:var(--gold);">vorstand@chippingdales.de</a></p>
+            E-Mail: <a href="/cdn-cgi/l/email-protection#bfc9d0cdcccbded1dbffdcd7d6cfcfd6d1d8dbded3dacc91dbda" style="color:var(--gold);"><span class="__cf_email__" data-cfemail="c9bfa6bbbabda8a7ad89aaa1a0b9b9a0a7aeada8a5acbae7adac">[email&#160;protected]</span></a></p>
         </div>
 
         <div style="height:30px;"></div>
@@ -882,6 +906,11 @@
                 </div>
             </div>
             <div class="scroll-area">
+<div class="welcome-box" id="wb-training">
+    <div class="wb-icon">⛳</div>
+    <h2 class="wb-title" id="wb-training-title">Guten Tag!</h2>
+    <p class="wb-text">Trage deine Schlagweiten ein und vergleiche sie mit den Richtwerten. Deine Daten werden lokal gespeichert – so verfolgst du deinen Fortschritt über die ganze Saison.</p>
+</div>
 <div id="input-list"></div>
                 <div style="height:50px;"></div>
             </div>
@@ -932,17 +961,5 @@
 
 </div>
 
-<script src="script.js"></script>
-<script src="quiz.js"></script>
-<script>
-    // Service Worker registrieren
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function () {
-            navigator.serviceWorker.register('./sw.js')
-                .then(function (reg) { console.log('SW registriert:', reg.scope); })
-                .catch(function (err) { console.log('SW Fehler:', err); });
-        });
-    }
-</script>
-</body>
-</html>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
+<script src="quiz.js"></scri
