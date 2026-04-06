@@ -560,13 +560,16 @@
         <button onclick="backToLanding()" class="btn-back">← HAUPTMENÜ</button>
         <div class="video-header-center"><img src="logo.png" class="logo-small"><span class="video-screen-title">TERMINE 2026</span></div>
     </div>
-    <div class="termine-body">
-        <p class="video-intro">Tippe auf einen Termin → Kalender &nbsp;|&nbsp; 🗺 → Navigation</p>
-
-        <!-- Wetterleiste -->
-        <div id="wetter-leiste" class="wetter-leiste">
+    <!-- Wetterleiste FIXIERT -->
+    <div class="termine-wetter-fixed">
+        <p class="video-intro" style="margin:0 0 8px;">Tippe auf einen Termin → Kalender &nbsp;|&nbsp; 🗺 → Navigation</p>
+        <div id="wetter-leiste" class="wetter-leiste" style="margin-bottom:0;">
             <div class="wetter-loading">📍 Wetterdaten werden geladen...</div>
         </div>
+    </div>
+
+    <!-- Scrollbarer Termine-Bereich -->
+    <div class="termine-body">
         <div class="termine-gruppe"><div class="termine-gruppe-label"><span class="cat-dot"></span>MÄRZ / MAI</div>
 <div class="termin-card special" onclick="addToCalendar('Chippingdales Mitgliederversammlung','20260320T163000','20260320T193000','Donner Partner, Stuttgarter Str. 108, 71332 Waiblingen')"><div class="termin-datum"><span class="termin-tag">FR</span><span class="termin-day">20.03.</span></div><div class="termin-info"><span class="termin-titel">Mitgliederversammlung</span><span class="termin-ort">📍 Donner Partner, Waiblingen · 16:30 Uhr</span></div><button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Stuttgarter+Str.+108,+71332+Waiblingen')" class="btn-maps">🗺</button><div class="termin-arrow">＋</div></div>
 <div class="termin-card " onclick="addToCalendar('Chippingdales – Platz 9-Loch GC Hetzenhof','20260506T180000','20260506T213000','GC Hetzenhof, Am Hetzenhof 5, 73547 Lorch')"><div class="termin-datum"><span class="termin-tag">MI</span><span class="termin-day">06.05.</span></div><div class="termin-info"><span class="termin-titel">Platz: 9-Loch</span><span class="termin-ort">📍 GC Hetzenhof, Lorch · 18:00 Uhr · 30,- €</span></div><button onclick="event.stopPropagation();openMaps('https://www.google.com/maps/search/?api=1&query=Am+Hetzenhof+5,+73547+Lorch')" class="btn-maps">🗺</button><div class="termin-arrow">＋</div></div>

@@ -321,11 +321,12 @@ body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; background: var(
 .termine-screen {
     position: fixed; inset: 0; background: var(--bg);
     display: flex; flex-direction: column; z-index: 100;
+    overflow: hidden;
 }
 
 .termine-body {
     flex: 1; overflow-y: auto;
-    padding: 14px 14px 0;
+    padding: 10px 14px 0;
     -webkit-overflow-scrolling: touch;
 }
 
@@ -500,3 +501,17 @@ body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; background: var(
 .wt-temp { font-size: 0.65rem; font-weight: 700; color: #ddd; }
 .wt-regen{ font-size: 0.5rem; color: #555; }
 .wt-golf { font-size: 0.48rem; font-weight: 800; text-align: center; letter-spacing: 0.5px; }
+
+
+/* ── Fixierte Wetterzone in Termine ── */
+.termine-wetter-fixed {
+    flex-shrink: 0;
+    padding: 10px 14px 0;
+    background: var(--bg);
+    border-bottom: 1px solid #1a1a1a;
+    padding-bottom: 10px;
+}
+.termine-wetter-fixed .video-intro {
+    font-size: 0.58rem; color: #444;
+    text-align: center; margin: 0 0 8px;
+}
