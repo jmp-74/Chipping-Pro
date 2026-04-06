@@ -50,13 +50,20 @@ body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; background: var(
 .landing-line { width: 35px; height: 1px; background: var(--gold); opacity: 0.4; }
 .landing-tagline-text { font-size: 0.5rem; letter-spacing: 3px; color: var(--gold); font-weight: 600; white-space: nowrap; }
 
-.landing-cards { width: 100%; display: flex; flex-direction: column; gap: 10px; }
+.landing-cards {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
 
 .landing-card {
-    width: 100%; display: flex; align-items: center; gap: 14px;
-    background: var(--card); border-radius: 12px; padding: 16px 18px;
-    border: 1px solid #1e1e1e; cursor: pointer; text-align: left;
+    width: 100%; display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 8px;
+    background: var(--card); border-radius: 12px; padding: 16px 10px;
+    border: 1px solid #1e1e1e; cursor: pointer; text-align: center;
     transition: transform 0.15s, border-color 0.15s;
+    min-height: 90px;
 }
 .landing-card:active { transform: scale(0.98); }
 .landing-card--gold  { border-color: var(--gold); }
@@ -74,11 +81,11 @@ body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; background: var(
 .landing-card--quiz .lc-icon  { color: #2ecc71; }
 .landing-card--quiz .lc-arrow { color: #2ecc71; }
 
-.lc-icon  { font-size: 1.3rem; width: 36px; text-align: center; flex-shrink: 0; color: var(--gold); }
-.lc-body  { flex: 1; display: flex; flex-direction: column; gap: 3px; }
-.lc-title { font-size: 0.78rem; font-weight: 800; color: #fff; letter-spacing: 1px; }
-.lc-sub   { font-size: 0.58rem; color: #555; }
-.lc-arrow { font-size: 0.9rem; color: var(--gold); }
+.lc-icon  { font-size: 1.8rem; text-align: center; color: var(--gold); }
+.lc-body  { display: flex; flex-direction: column; gap: 3px; align-items: center; }
+.lc-title { font-size: 0.65rem; font-weight: 800; color: #fff; letter-spacing: 1px; text-align: center; }
+.lc-sub   { font-size: 0.5rem; color: #555; text-align: center; line-height: 1.3; }
+.lc-arrow { display: none; }
 
 .landing-footer { font-size: 0.48rem; color: #333; letter-spacing: 2px; text-transform: uppercase; margin: 0; }
 
@@ -440,3 +447,19 @@ body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; background: var(
 }
 .hcp-info-box p:last-child { margin-bottom: 0; }
 .hcp-info-box strong { color: #26c6da; }
+
+/* Landing Claim / Spruch */
+.landing-claim {
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    text-align: center;
+}
+.landing-claim-icon { font-size: 1.2rem; }
+.landing-claim-text {
+    margin: 0;
+    font-size: 0.75rem; font-weight: 700;
+    color: var(--gold); letter-spacing: 1px;
+}
+.landing-claim-sub {
+    font-size: 0.52rem; color: #444;
+    letter-spacing: 2px; text-transform: uppercase;
+}
