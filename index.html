@@ -579,14 +579,13 @@
     <div class="termine-welcome-wrap">
         <div class="welcome-box" id="wb-termine">
             <div class="wb-icon">📅</div>
-            <h2 class="wb-title" id="wb-termine-title">Willkommen bei den Terminen 2026!</h2>
-            <p class="wb-text">Alle Chippingdales-Events auf einen Blick. Tippe auf einen Termin um ihn direkt in deinen Kalender zu speichern – oder auf 🗺 für die Navigation zum Golfplatz.</p>
+            <h2 class="wb-title" id="wb-termine-title">Alle Chippingdales Events im Überblick</h2>
         </div>
     </div>
 
     <!-- Wetterleiste FIXIERT -->
     <div class="termine-wetter-fixed">
-        <p class="video-intro" style="margin:0 0 8px;">Tippe auf einen Termin → Kalender &nbsp;|&nbsp; 🗺 → Navigation</p>
+        <p class="video-intro" style="margin:0 0 8px;">📆 Kalender ＋ &nbsp;|&nbsp; 🗺 Navigation</p>
         <div id="wetter-leiste" class="wetter-leiste" style="margin-bottom:0;">
             <div class="wetter-loading">📍 Wetterdaten werden geladen...</div>
         </div>
@@ -962,4 +961,15 @@
 </div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
-<script src="quiz.js"></scri
+<script src="quiz.js"></script>
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+            navigator.serviceWorker.register('./sw.js')
+                .then(function (reg) { console.log('SW registriert:', reg.scope); })
+                .catch(function (err) { console.log('SW Fehler:', err); });
+        });
+    }
+</script>
+</body>
+</html>

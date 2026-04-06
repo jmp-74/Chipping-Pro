@@ -1817,9 +1817,7 @@ if (topResetButton) {
     topResetButton.addEventListener('click', displayModuleSelection); 
 }
 
-getNextButton().addEventListener('click', nextQuestionHandler);
-
-// START: Wir starten die App immer mit der Modulauswahl
+// Event Listener wird in initQuiz() gesetzt
 // Quiz wird über goToQuiz() aus script.js gestartet
 
 // ─────────────────────────────────────────────
