@@ -1592,10 +1592,10 @@ function loadQuestion(questionData) {
         
         <div class="quiz-img-wrap">
             <img 
-                src="https://source.unsplash.com/featured/600x280/?golf,${encodeURIComponent(questionData.image_query)}"
+                src="https://loremflickr.com/600/280/golf,${encodeURIComponent(questionData.image_query)}?random=${questionData.id}"
                 alt="${questionData.image_query}"
                 class="quiz-img"
-                onerror="this.style.display='none'"
+                onerror="this.parentElement.style.display='none'"
                 loading="lazy"
             >
         </div>

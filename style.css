@@ -387,3 +387,56 @@ body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; background: var(
     -webkit-tap-highlight-color: transparent;
 }
 .btn-maps:active { border-color: #4db6ac; background: #001a18; }
+
+/* Landing Card HCP */
+.landing-card--hcp {
+    border-color: #26c6da;
+    background: linear-gradient(135deg, #00161a, #0f0f0f);
+}
+.landing-card--hcp .lc-icon  { color: #26c6da; }
+.landing-card--hcp .lc-arrow { color: #26c6da; }
+
+/* ══════════════════════════════════════
+   HANDICAP RECHNER SCREEN
+══════════════════════════════════════ */
+.hcp-body {
+    flex: 1; overflow-y: auto;
+    padding: 14px 14px 0;
+    -webkit-overflow-scrolling: touch;
+}
+
+.hcp-gruppe { margin-bottom: 10px; }
+
+.hcp-card {
+    display: flex; align-items: center; gap: 14px;
+    background: var(--card); border: 1px solid #1e1e1e;
+    border-left: 3px solid #26c6da;
+    border-radius: 10px; padding: 16px 14px;
+    margin-bottom: 10px; cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    -webkit-tap-highlight-color: transparent;
+}
+.hcp-card:active { background: #001a1c; border-color: #26c6da; }
+
+.hcp-icon { font-size: 1.4rem; flex-shrink: 0; }
+
+.hcp-info {
+    flex: 1; display: flex; flex-direction: column; gap: 3px;
+}
+.hcp-titel { font-size: 0.82rem; font-weight: 800; color: #fff; }
+.hcp-sub   { font-size: 0.62rem; color: #666; }
+.hcp-url   { font-size: 0.52rem; color: #26c6da; letter-spacing: 0.5px; }
+
+.hcp-arrow { font-size: 1rem; color: #26c6da; flex-shrink: 0; }
+
+.hcp-info-box {
+    background: #0a0a0a; border: 1px solid #1e1e1e;
+    border-left: 3px solid #26c6da;
+    border-radius: 10px; padding: 16px;
+}
+.hcp-info-box p {
+    font-size: 0.75rem; color: #888;
+    margin: 0 0 8px; line-height: 1.5;
+}
+.hcp-info-box p:last-child { margin-bottom: 0; }
+.hcp-info-box strong { color: #26c6da; }

@@ -87,6 +87,15 @@
                 </div>
                 <div class="lc-arrow">→</div>
             </button>
+
+            <button onclick="goToHcp()" class="landing-card landing-card--hcp">
+                <div class="lc-icon">🧮</div>
+                <div class="lc-body">
+                    <span class="lc-title">HANDICAP RECHNER</span>
+                    <span class="lc-sub">Scorekarten & HCP berechnen</span>
+                </div>
+                <div class="lc-arrow">→</div>
+            </button>
         </div>
 
         <p class="landing-footer">Golf Club Chippingdales &nbsp;·&nbsp; Since 2021</p>
@@ -561,6 +570,71 @@
 
         <div style="height:30px;"></div>
     </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     SCREEN 7: HANDICAP RECHNER
+══════════════════════════════════════════ -->
+<div id="hcp-screen" class="hidden video-screen">
+
+    <div class="video-header">
+        <button onclick="backToLanding()" class="btn-back">← HAUPTMENÜ</button>
+        <div class="video-header-center">
+            <img src="logo.png" class="logo-small">
+            <span class="video-screen-title">HANDICAP RECHNER</span>
+        </div>
+    </div>
+
+    <div class="hcp-body">
+        <p class="video-intro">Wähle deinen Golfplatz – der Rechner öffnet<br>direkt mit Scorekarte & HCP-Berechnung.</p>
+
+        <div class="hcp-gruppe">
+            <div class="termine-gruppe-label"><span class="cat-dot"></span>UNSERE PLÄTZE</div>
+
+            <div class="hcp-card" onclick="openHcp('https://www.handicap-berechnen.de/golfclub-hetzenhof-e-v/')">
+                <div class="hcp-icon">⛳</div>
+                <div class="hcp-info">
+                    <span class="hcp-titel">GC Hetzenhof</span>
+                    <span class="hcp-sub">Hetzenhof 7, 73547 Lorch</span>
+                    <span class="hcp-url">handicap-berechnen.de</span>
+                </div>
+                <div class="hcp-arrow">→</div>
+            </div>
+
+            <div class="hcp-card" onclick="openHcp('https://www.handicap-berechnen.de/golf-und-landclub-haghof-e-v/')">
+                <div class="hcp-icon">⛳</div>
+                <div class="hcp-info">
+                    <span class="hcp-titel">GLC Haghof</span>
+                    <span class="hcp-sub">Haghof 6, 73553 Alfdorf</span>
+                    <span class="hcp-url">handicap-berechnen.de</span>
+                </div>
+                <div class="hcp-arrow">→</div>
+            </div>
+
+            <div class="hcp-card" onclick="openHcp('https://www.handicap-berechnen.de/golfplatz-leonhardshaun/')">
+                <div class="hcp-icon">⛳</div>
+                <div class="hcp-info">
+                    <span class="hcp-titel">Golfplatz Leonhardshaun</span>
+                    <span class="hcp-sub">Martinshaun 230, 84061 Ergoldsbach</span>
+                    <span class="hcp-url">handicap-berechnen.de</span>
+                </div>
+                <div class="hcp-arrow">→</div>
+            </div>
+        </div>
+
+        <div class="hcp-gruppe" style="margin-top:24px;">
+            <div class="termine-gruppe-label"><span class="cat-dot"></span>WIE FUNKTIONIERT ES?</div>
+            <div class="hcp-info-box">
+                <p>1. Wähle deinen Golfplatz</p>
+                <p>2. Gib deine gespielten Löcher ein</p>
+                <p>3. Der Rechner ermittelt automatisch dein <strong>Handicap</strong> und die <strong>Nettopunkte</strong></p>
+            </div>
+        </div>
+
+        <div style="height:30px;"></div>
+    </div>
+
 </div>
 
 

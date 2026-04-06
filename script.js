@@ -29,7 +29,7 @@ window.onload = function () {
 // SCREEN NAVIGATION
 // ─────────────────────────────────────────────
 function showScreen(id) {
-    ['landing-screen', 'start-screen', 'video-screen', 'quiz-screen', 'rules-screen', 'termine-screen', 'main-app'].forEach(function (s) {
+    ['landing-screen', 'start-screen', 'video-screen', 'quiz-screen', 'rules-screen', 'termine-screen', 'hcp-screen', 'main-app'].forEach(function (s) {
         var el = document.getElementById(s);
         if (el) el.classList.add('hidden');
     });
@@ -261,5 +261,16 @@ function addToCalendar(titel, start, end, ort) {
 // GOOGLE MAPS
 // ─────────────────────────────────────────────
 function openMaps(url) {
+    window.open(url, '_blank');
+}
+
+// ─────────────────────────────────────────────
+// HANDICAP RECHNER
+// ─────────────────────────────────────────────
+function goToHcp() {
+    showScreen('hcp-screen');
+}
+
+function openHcp(url) {
     window.open(url, '_blank');
 }
