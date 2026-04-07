@@ -303,29 +303,194 @@ function openHcp(url) {
 }
 
 // ─────────────────────────────────────────────
+// WETTER – Link zur Wetter-App
+// ─────────────────────────────────────────────
+function openWetter() {
+    // Wetteronline für Waiblingen – 3-Tage Vorschau
+    window.open('https://www.wetteronline.de/wetter/waiblingen', '_blank');
+}
+
+// ─────────────────────────────────────────────
+// GOOGLE MAPS
+// ─────────────────────────────────────────────
+function openMaps(url) {
+    window.open(url, '_blank');
+}
+
+// ─────────────────────────────────────────────
+// HANDICAP RECHNER
+// ─────────────────────────────────────────────
+function goToHcp() {
+    showScreen('hcp-screen');
+    var saved = localStorage.getItem('cp_final_elite_v10');
+    var n = saved ? JSON.parse(saved).name : '';
+    var el = document.getElementById('wb-hcp-title');
+    if (el && n) el.innerText = 'Willkommen, ' + n + '! 🧮';
+}
+
+function openHcp(url) {
+    window.open(url, '_blank');
+}
+
+// ─────────────────────────────────────────────
+// WETTER (Open-Meteo API – kostenlos, kein Key)
+// ─────────────────────────────────────────────
+function loadWetter() {
+    var el = document.getElementById('wetter-leiste');
+    if (!el) return;
+    el.innerHTML = '<div class="wetter-loading">📍 Wetterdaten werden geladen...</div>';
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            function(pos) {
+                fetchWetter(pos.coords.latitude.toFixed(4), pos.coords.longitude.toFixed(4));
+            },
+            function() {
+                // Fallback Waiblingen
+                fetchWetter('48.8340', '9.3184');
+            },
+            { timeout: 6000, maximumAge: 300000 }
+        );
+    } else {
+        fetchWetter('48.8340', '9.3184');
+    }
+}
+
+function fetchWetter(lat, lon) {
+    var el = document.getElementById('wetter-leiste');
+
+    var url = 'https://api.open-meteo.com/v1/forecast'
+            + '?latitude=' + lat
+            + '&longitude=' + lon
+            + '&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_sum,windspeed_10m_max'
+            + '&timezone=Europe%2FBerlin'
+            + '&forecast_days=3';
+
+    fetch(url)
+        .then(function(r) {
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            return r.json();
+        })
+        .then(function(data) {
+            // Ortsname abrufen
+            fetch('https://nominatim.openstreetmap.org/reverse?lat=' + lat + '&lon=' + lon + '&format=json')
+                .then(function(r) { return r.json(); })
+                .then(function(geo) {
+                    var ort = (geo.address && (geo.address.city || geo.address.town || geo.address.village || geo.address.county)) || 'Aktueller Standort';
+                    renderWetter(data, ort);
+                })
+                .catch(function() {
+                    renderWetter(data, 'Waiblingen');
+                });
+        })
+        .catch(function(err) {
+            if (el) el.innerHTML = '<div class="wetter-error">⚠ ' + (err.message || 'Verbindungsfehler') + '</div>';
+        });
+}
+
+function renderWetter(data, ort) {
+    var el = document.getElementById('wetter-leiste');
+    if (!el) return;
+
+    var codes  = data.daily.weathercode;
+    var maxT   = data.daily.temperature_2m_max;
+    var minT   = data.daily.temperature_2m_min;
+    var rain   = data.daily.precipitation_sum;
+    var wind   = data.daily.windspeed_10m_max;
+    var dates  = data.daily.time;
+
+    function wetterIcon(code) {
+        if (code === 0)   return '☀️';
+        if (code <= 2)    return '🌤️';
+        if (code === 3)   return '☁️';
+        if (code <= 49)   return '🌫️';
+        if (code <= 59)   return '🌦️';
+        if (code <= 69)   return '🌧️';
+        if (code <= 79)   return '❄️';
+        if (code <= 82)   return '🌧️';
+        if (code <= 84)   return '🌨️';
+        if (code <= 99)   return '⛈️';
+        return '🌡️';
+    }
+
+    function golfEignung(code, regen, windSpeed) {
+        if (code >= 80 || regen > 5)  return { text: 'Schlechte Bedingungen', col: '#ff4d4d' };
+        if (code >= 61 || regen > 1)  return { text: 'Bedingt spielbar',      col: '#ffa726' };
+        if (windSpeed > 40)            return { text: 'Sehr windig',           col: '#ffa726' };
+        if (code <= 2 && regen === 0)  return { text: 'Ideale Bedingungen ⛳', col: '#2ecc71' };
+        return { text: 'Gute Bedingungen', col: '#2ecc71' };
+    }
+
+    function tagName(i) {
+        if (i === 0) return 'HEUTE';
+        if (i === 1) return 'MORGEN';
+        // Explizit lokales Datum berechnen
+        var now  = new Date();
+        var next = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i);
+        return ['SO','MO','DI','MI','DO','FR','SA'][next.getDay()];
+    }
+
+    var html = '<div class="wetter-ort">📍 ' + ort + '</div><div class="wetter-tage">';
+    for (var i = 0; i < 3; i++) {
+        var eg = golfEignung(codes[i], rain[i], wind[i]);
+        html += '<div class="wetter-tag">'
+            + '<span class="wt-day">'   + tagName(i) + '</span>'
+            + '<span class="wt-icon">'  + wetterIcon(codes[i]) + '</span>'
+            + '<span class="wt-temp">'  + Math.round(maxT[i]) + '° / ' + Math.round(minT[i]) + '°</span>'
+            + '<span class="wt-regen">' + (rain[i] > 0 ? '💧 ' + rain[i].toFixed(1) + 'mm' : '🌵 trocken') + '</span>'
+            + '<span class="wt-golf" style="color:' + eg.col + '">' + eg.text + '</span>'
+            + '</div>';
+    }
+    html += '</div>';
+    el.innerHTML = html;
+}
+
+// ─────────────────────────────────────────────
+// GOOGLE MAPS
+// ─────────────────────────────────────────────
+function openMaps(url) {
+    window.open(url, '_blank');
+}
+
+// ─────────────────────────────────────────────
+// HANDICAP RECHNER
+// ─────────────────────────────────────────────
+function goToHcp() {
+    showScreen('hcp-screen');
+    var saved = localStorage.getItem('cp_final_elite_v10');
+    var n = saved ? JSON.parse(saved).name : '';
+    var el = document.getElementById('wb-hcp-title');
+    if (el && n) el.innerText = 'Willkommen, ' + n + '! 🧮';
+}
+
+function openHcp(url) {
+    window.open(url, '_blank');
+}
+
+// ─────────────────────────────────────────────
 // WETTER (Open-Meteo API – kostenlos, kein Key)
 // ─────────────────────────────────────────────
 function loadWetter() {
     var el = document.getElementById('wetter-leiste');
     if (!el) return;
 
-    if (!navigator.geolocation) {
-        el.innerHTML = '<div class="wetter-error">📍 Standort nicht verfügbar</div>';
-        return;
-    }
+    el.innerHTML = '<div class="wetter-loading">📍 Wetterdaten werden geladen...</div>';
 
-    navigator.geolocation.getCurrentPosition(
-        function(pos) {
-            var lat = pos.coords.latitude.toFixed(4);
-            var lon = pos.coords.longitude.toFixed(4);
-            fetchWetter(lat, lon);
-        },
-        function() {
-            // Fallback: Stuttgart
-            fetchWetter('48.7758', '9.1829');
-        },
-        { timeout: 8000 }
-    );
+    // Versuche Geolocation, Fallback: Stuttgart (Waiblingen-Nähe)
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            function(pos) {
+                fetchWetter(pos.coords.latitude.toFixed(4), pos.coords.longitude.toFixed(4));
+            },
+            function(err) {
+                // GPS verweigert oder Timeout → Stuttgart/Waiblingen
+                fetchWetter('48.8340', '9.3184');
+            },
+            { timeout: 6000, maximumAge: 300000 }
+        );
+    } else {
+        fetchWetter('48.8340', '9.3184');
+    }
 }
 
 function fetchWetter(lat, lon) {
@@ -336,12 +501,13 @@ function fetchWetter(lat, lon) {
         + '&timezone=Europe%2FBerlin'
         + '&forecast_days=3';
 
-    fetch(url)
+    // Immer frisch laden
+    fetch(url, { cache: 'no-store', mode: 'cors' })
         .then(function(r) { return r.json(); })
         .then(function(data) { renderWetter(data, lat, lon); })
         .catch(function() {
             var el = document.getElementById('wetter-leiste');
-            if (el) el.innerHTML = '<div class="wetter-error">⚠ Wetter nicht verfügbar</div>';
+            if (el) el.innerHTML = '<div class="wetter-error">⚠ Wetter gerade nicht verfügbar – bitte Internet prüfen</div>';
         });
 }
 
@@ -381,7 +547,9 @@ function renderWetter(data, lat, lon) {
     function tagName(dateStr, i) {
         if (i === 0) return 'HEUTE';
         if (i === 1) return 'MORGEN';
-        var d = new Date(dateStr);
+        // Datum explizit als lokale Zeit parsen (kein UTC-Versatz)
+        var parts = dateStr.split('-');
+        var d = new Date(parseInt(parts[0]), parseInt(parts[1])-1, parseInt(parts[2]));
         var tage = ['SO', 'MO', 'DI', 'MI', 'DO', 'FR', 'SA'];
         return tage[d.getDay()];
     }
