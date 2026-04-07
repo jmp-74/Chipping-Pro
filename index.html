@@ -868,28 +868,16 @@
             <img src="logo.png" class="logo-small">
             <span class="video-screen-title">KI-CADDIE</span>
         </div>
-        <button onclick="clearCaddie()" class="btn-caddie-clear">🗑</button>
     </div>
 
-    <div class="caddie-body">
-        <div id="caddie-messages">
-            <div class="caddie-welcome" id="caddie-welcome-box">
-                <div class="caddie-welcome-icon">🤖</div>
-                <h3 class="caddie-welcome-title" id="caddie-welcome-name">Dein KI-Caddie</h3>
-                <p class="caddie-welcome-text">Ich beantworte deine Golf-Fragen direkt auf dem Platz – Regeln, Situationen, Technik. Einfach fragen!</p>
-                <div class="caddie-suggestions">
-                    <button class="caddie-suggestion" onclick="askSuggestion(this)">Ball im Wasserhindernis – was tun?</button>
-                    <button class="caddie-suggestion" onclick="askSuggestion(this)">Unspielbare Lage – welche Optionen?</button>
-                    <button class="caddie-suggestion" onclick="askSuggestion(this)">Ball nicht auffindbar – wie viel Zeit?</button>
-                    <button class="caddie-suggestion" onclick="askSuggestion(this)">Ball trifft anderen Ball auf dem Grün</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="caddie-input-area">
-        <textarea id="caddie-input" class="caddie-input" placeholder="Frage stellen..." rows="2" maxlength="500"></textarea>
-        <button id="caddie-send" onclick="sendCaddie()" class="caddie-send-btn">&#9654;</button>
+    <div class="caddie-iframe-wrap">
+        <iframe
+            src="https://www.chatbase.co/chatbot-iframe/PM6BM-lLMDEEvMu65FVB-"
+            width="100%"
+            style="height: 100%; border: none;"
+            frameborder="0"
+            allow="microphone"
+        ></iframe>
     </div>
 
 </div>
