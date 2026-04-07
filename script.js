@@ -306,8 +306,44 @@ function openHcp(url) {
 // WETTER – Link zur Wetter-App
 // ─────────────────────────────────────────────
 function openWetter() {
-    // Wetteronline für Waiblingen – 3-Tage Vorschau
-    window.open('https://www.wetteronline.de/wetter/waiblingen', '_blank');
+    var btn = document.querySelector('.btn-wetter-link');
+    if (btn) btn.innerText = '📍 Standort wird ermittelt...';
+
+    var reset = function() {
+        if (btn) btn.innerHTML = '🌤️ &nbsp; AKTUELLES WETTER &amp; 3-TAGE-VORSCHAU ÖFFNEN';
+    };
+
+    var oeffneWetter = function(lat, lon) {
+        // Nominatim: Ort per GPS ermitteln, dann wetter.com öffnen
+        fetch('https://nominatim.openstreetmap.org/reverse?lat=' + lat + '&lon=' + lon + '&format=json&accept-language=de')
+            .then(function(r) { return r.json(); })
+            .then(function(geo) {
+                var ort = geo.address.city || geo.address.town || geo.address.village || 'waiblingen';
+                // wetter.com Suche mit Ortsname
+                window.open('https://www.wetter.com/suche/?q=' + encodeURIComponent(ort), '_blank');
+                reset();
+            })
+            .catch(function() {
+                window.open('https://www.wetter.com/deutschland/waiblingen/DE0014336.html', '_blank');
+                reset();
+            });
+    };
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            function(pos) {
+                oeffneWetter(pos.coords.latitude.toFixed(4), pos.coords.longitude.toFixed(4));
+            },
+            function() {
+                window.open('https://www.wetter.com/deutschland/waiblingen/DE0014336.html', '_blank');
+                reset();
+            },
+            { timeout: 6000 }
+        );
+    } else {
+        window.open('https://www.wetter.com/deutschland/waiblingen/DE0014336.html', '_blank');
+        reset();
+    }
 }
 
 // ─────────────────────────────────────────────
