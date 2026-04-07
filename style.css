@@ -619,3 +619,19 @@ body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; background: var(
     transition: all 0.15s;
 }
 .btn-wetter-link:active { background: #001a2e; border-color: #90caf9; color: #90caf9; }
+
+/* Wetter Link als <a> Tag */
+.btn-wetter-link-a {
+    display: block; width: 100%;
+    padding: 11px; box-sizing: border-box;
+    background: linear-gradient(135deg, #001525, #0a0a0a);
+    border: 1px solid #42a5f5;
+    color: #42a5f5; border-radius: 8px;
+    font-size: 0.68rem; font-weight: 800;
+    cursor: pointer; letter-spacing: 1px;
+    text-transform: uppercase; text-align: center;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+.btn-wetter-link-a:active { background: #001a2e; color: #90caf9; }
