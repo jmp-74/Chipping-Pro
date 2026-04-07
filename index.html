@@ -96,6 +96,15 @@
                 </div>
                 <div class="lc-arrow">→</div>
             </button>
+
+            <button onclick="goToCaddie()" class="landing-card landing-card--caddie">
+                <div class="lc-icon">🤖</div>
+                <div class="lc-body">
+                    <span class="lc-title">KI-CADDIE</span>
+                    <span class="lc-sub">Regelberater & Golfassistent</span>
+                </div>
+                <div class="lc-arrow">→</div>
+            </button>
         </div>
 
         <div class="landing-claim">
@@ -849,6 +858,44 @@
 
 
 <!-- ══════════════════════════════════════════
+     SCREEN 7: KI-CADDIE
+══════════════════════════════════════════ -->
+<div id="caddie-screen" class="hidden caddie-screen">
+
+    <div class="video-header">
+        <button onclick="backToLanding()" class="btn-back">← HAUPTMENÜ</button>
+        <div class="video-header-center">
+            <img src="logo.png" class="logo-small">
+            <span class="video-screen-title">KI-CADDIE</span>
+        </div>
+        <button onclick="clearCaddie()" class="btn-caddie-clear">🗑</button>
+    </div>
+
+    <div class="caddie-body">
+        <div id="caddie-messages">
+            <div class="caddie-welcome" id="caddie-welcome-box">
+                <div class="caddie-welcome-icon">🤖</div>
+                <h3 class="caddie-welcome-title" id="caddie-welcome-name">Dein KI-Caddie</h3>
+                <p class="caddie-welcome-text">Ich beantworte deine Golf-Fragen direkt auf dem Platz – Regeln, Situationen, Technik. Einfach fragen!</p>
+                <div class="caddie-suggestions">
+                    <button class="caddie-suggestion" onclick="askSuggestion(this)">Ball im Wasserhindernis – was tun?</button>
+                    <button class="caddie-suggestion" onclick="askSuggestion(this)">Unspielbare Lage – welche Optionen?</button>
+                    <button class="caddie-suggestion" onclick="askSuggestion(this)">Ball nicht auffindbar – wie viel Zeit?</button>
+                    <button class="caddie-suggestion" onclick="askSuggestion(this)">Ball trifft anderen Ball auf dem Grün</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="caddie-input-area">
+        <textarea id="caddie-input" class="caddie-input" placeholder="Frage stellen..." rows="2" maxlength="500"></textarea>
+        <button id="caddie-send" onclick="sendCaddie()" class="caddie-send-btn">&#9654;</button>
+    </div>
+
+</div>
+
+
+<!-- ══════════════════════════════════════════
      MODALS (Ref & Delete)
 ══════════════════════════════════════════ -->
 <div id="ref-modal" class="modal hidden">
@@ -959,7 +1006,8 @@
 
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://js.puter.com/v2/"></script>
+<script src="script.js"></script>
 <script src="quiz.js"></script>
 <script>
     if ('serviceWorker' in navigator) {

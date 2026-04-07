@@ -29,7 +29,7 @@ window.onload = function () {
 // SCREEN NAVIGATION
 // ─────────────────────────────────────────────
 function showScreen(id) {
-    ['landing-screen', 'start-screen', 'video-screen', 'quiz-screen', 'rules-screen', 'termine-screen', 'hcp-screen', 'impressum-screen', 'nutzung-screen', 'main-app'].forEach(function (s) {
+    ['landing-screen', 'start-screen', 'video-screen', 'quiz-screen', 'rules-screen', 'termine-screen', 'hcp-screen', 'impressum-screen', 'nutzung-screen', 'caddie-screen', 'main-app'].forEach(function (s) {
         var el = document.getElementById(s);
         if (el) el.classList.add('hidden');
     });
@@ -63,6 +63,7 @@ function goToTermine() {
     var el = document.getElementById('wb-termine-title');
     if (el && n) el.innerText = 'Willkommen, ' + n + '! 📅';
 }
+
 
 function goToImpressum() {
     showScreen('impressum-screen');
@@ -280,6 +281,94 @@ function addToCalendar(titel, start, end, ort) {
     URL.revokeObjectURL(url);
 }
 
+
+// ─────────────────────────────────────────────
+// LOKALE REGELKARTEI
+// ─────────────────────────────────────────────
+function caddieAntwort(frage) {
+    var f = frage.toLowerCase();
+
+    if (f.includes('wasser') || f.includes('hindernis') || f.includes('penalty area')) {
+        return '**Ball im Penaltybereich (Regel 17)**\n\n' +
+            'Du hast **3 Optionen** (je 1 Strafschlag):\n\n' +
+            '1. **Schlag und Distanz** – Spiele vom Ort des letzten Schlags erneut\n' +
+            '2. **Rückwärts auf der Linie** – Stelle auf der Linie zwischen Fahne und Eintrittspunkt des Balls auf (beliebige Entfernung hinter dem Penaltybereich)\n' +
+            '3. **Seitliche Erleichterung** (nur rote Markierung) – Droppe innerhalb 2 Schlägerlängen vom Eintrittspunkt, nicht näher zur Fahne\n\n' +
+            '**Tipp:** Bei gelber Markierung entfällt Option 3.';
+    }
+    if (f.includes('unspielbar')) {
+        return '**Unspielbare Lage (Regel 19)**\n\n' +
+            'Du hast **3 Optionen** (je 1 Strafschlag):\n\n' +
+            '1. **Schlag und Distanz** – Zurück zum Ort des letzten Schlags\n' +
+            '2. **Rückwärts auf der Linie** – Beliebig weit hinter dem Ball auf der Linie Ball–Fahne\n' +
+            '3. **Seitliche Erleichterung** – Droppe innerhalb 2 Schlägerlängen vom Ball, nicht näher zur Fahne\n\n' +
+            '**Ausnahme:** Im Bunker? Dann nur Optionen 1 & 2 (oder mit 2 Strafschlägen außerhalb).';
+    }
+    if (f.includes('nicht auffindbar') || f.includes('verloren') || f.includes('suche') || f.includes('such')) {
+        return '**Verlorener Ball (Regel 18)**\n\n' +
+            '**Suchzeit:** Du hast **3 Minuten** ab Beginn der Suche.\n\n' +
+            'Wird der Ball nicht gefunden:\n' +
+            '**Schlag und Distanz** – 1 Strafschlag, zurück zum Ort des letzten Schlags.\n\n' +
+            '**Seit 2019:** Lokale Regel erlaubt alternativ das Droppen im Bereich wo der Ball verloren ging (2 Strafschläge) – prüfe ob dein Club diese Regel nutzt.';
+    }
+    if (f.includes('grün') && (f.includes('trifft') || f.includes('berührt') || f.includes('anderer ball'))) {
+        return '**Ball trifft Ball auf dem Grün (Regel 11.1)**\n\n' +
+            'Im **Zählspiel:** 2 Strafschläge für den Spieler dessen Ball den ruhenden Ball trifft. Beide Bälle werden zurückgelegt.\n\n' +
+            'Im **Lochspiel:** Kein Strafschlag. Der getroffene Ball wird zurückgelegt, dein Ball bleibt liegen wo er ist.\n\n' +
+            '**Tipp:** Auf dem Grün immer den Ball des Mitspielers markieren lassen bevor du puttest!';
+    }
+    if (f.includes('bunker') || f.includes('sand')) {
+        return '**Bunker-Regeln (Regel 12)**\n\n' +
+            '**Im Bunker nicht erlaubt:**\n' +
+            '- Sand vor dem Schlag berühren (Testschlag)\n' +
+            '- Schläger in den Sand aufsetzen (Adresse)\n' +
+            '- Lose Hemmnisse entfernen (außer ab 2019 erlaubt)\n\n' +
+            '**Erleichterung aus Bunker:**\n' +
+            '- 1 Strafschlag: Droppe hinter dem Bunker auf Ball–Fahne Linie\n' +
+            '- 2 Strafschläge: Schlag und Distanz (verlasse Bunker)';
+    }
+    if (f.includes('obstruktion') || f.includes('pfahl') || f.includes('sprinkler') || f.includes('hindernis')) {
+        return '**Bewegliche/Unbewegliche Obstruktion (Regel 15/16)**\n\n' +
+            '**Beweglich** (z.B. Papier, Rechen): Einfach entfernen – kein Strafschlag.\n\n' +
+            '**Unbeweglich** (z.B. Sprinkler, Weg): Straflose Erleichterung.\n' +
+            'Droppe innerhalb 1 Schlägerlänge vom nächsten Punkt ohne Behinderung, nicht näher zur Fahne.';
+    }
+    if (f.includes('handicap') || f.includes('hcp') || f.includes('vorgabe')) {
+        return '**Handicap Berechnung (World Handicap System)**\n\n' +
+            'Dein **Handicap Index** basiert auf den besten 8 deiner letzten 20 Runden.\n\n' +
+            '**Score Differential** = (113 / Slope) × (Bruttoergebnis – Course Rating)\n\n' +
+            'Das **Course Handicap** für einen Platz:\n' +
+            'Handicap Index × (Slope / 113) + (Course Rating – Par)\n\n' +
+            '**Tipp:** Nutze den HCP-Rechner in dieser App für deinen genauen Wert!';
+    }
+    if (f.includes('drop') || f.includes('droppen') || f.includes('erleichterung')) {
+        return '**Dropping-Regeln (Regel 14.3)**\n\n' +
+            '**Seit 2019:** Ball wird aus **Kniehöhe** fallengelassen (früher Schulterhöhe).\n\n' +
+            '**Relief Area:**\n' +
+            '- 1 Schlägerlänge: bei den meisten Erleichterungen\n' +
+            '- 2 Schlägerlängen: bei lateraler Erleichterung\n\n' +
+            'Der Ball muss in der Relief Area zur Ruhe kommen. Rollt er heraus, wird er platziert.';
+    }
+    if (f.includes('ausrüstung') || f.includes('schläger') || f.includes('ball') && f.includes('beschädigt')) {
+        return '**Beschädigte Ausrüstung (Regel 4)**\n\n' +
+            '**Beschädigter Schläger:**\n' +
+            '- Durch normales Spiel beschädigt: weiter verwenden erlaubt\n' +
+            '- Durch Wut/Missbrauch beschädigt: nicht ersetzen, aber weiter verwenden\n\n' +
+            '**Max. 14 Schläger:** Überschreitung = 2 Strafschläge pro Loch (max. 4/Runde)\n\n' +
+            '**Ball wechseln:** Erlaubt wenn sichtbar beschädigt (Schnitt, Delle) – Mitspieler informieren!';
+    }
+
+    // Allgemeine Antwort
+    return '**Golfregeln 2023–2027**\n\n' +
+        'Für diese Frage kann ich dir folgende Regelthemen empfehlen:\n\n' +
+        '⛳ Tippe auf einen der Vorschläge unten\n' +
+        '💧 Ball im Wasser\n' +
+        '🚫 Unspielbare Lage\n' +
+        '🔍 Ball nicht auffindbar\n' +
+        '🏌️ Bunker-Regeln\n\n' +
+        '**Oder stelle deine Frage genauer** – ich helfe dir sofort!';
+}
+
 // ─────────────────────────────────────────────
 // GOOGLE MAPS
 // ─────────────────────────────────────────────
@@ -313,27 +402,102 @@ function updateWetterLink() {
     // Link bleibt auf Waiblingen – zuverlässig
 }
 
+
+// ─────────────────────────────────────────────
+// LOKALE REGELKARTEI
+// ─────────────────────────────────────────────
+function caddieAntwort(frage) {
+    var f = frage.toLowerCase();
+
+    if (f.includes('wasser') || f.includes('hindernis') || f.includes('penalty area')) {
+        return '**Ball im Penaltybereich (Regel 17)**\n\n' +
+            'Du hast **3 Optionen** (je 1 Strafschlag):\n\n' +
+            '1. **Schlag und Distanz** – Spiele vom Ort des letzten Schlags erneut\n' +
+            '2. **Rückwärts auf der Linie** – Stelle auf der Linie zwischen Fahne und Eintrittspunkt des Balls auf (beliebige Entfernung hinter dem Penaltybereich)\n' +
+            '3. **Seitliche Erleichterung** (nur rote Markierung) – Droppe innerhalb 2 Schlägerlängen vom Eintrittspunkt, nicht näher zur Fahne\n\n' +
+            '**Tipp:** Bei gelber Markierung entfällt Option 3.';
+    }
+    if (f.includes('unspielbar')) {
+        return '**Unspielbare Lage (Regel 19)**\n\n' +
+            'Du hast **3 Optionen** (je 1 Strafschlag):\n\n' +
+            '1. **Schlag und Distanz** – Zurück zum Ort des letzten Schlags\n' +
+            '2. **Rückwärts auf der Linie** – Beliebig weit hinter dem Ball auf der Linie Ball–Fahne\n' +
+            '3. **Seitliche Erleichterung** – Droppe innerhalb 2 Schlägerlängen vom Ball, nicht näher zur Fahne\n\n' +
+            '**Ausnahme:** Im Bunker? Dann nur Optionen 1 & 2 (oder mit 2 Strafschlägen außerhalb).';
+    }
+    if (f.includes('nicht auffindbar') || f.includes('verloren') || f.includes('suche') || f.includes('such')) {
+        return '**Verlorener Ball (Regel 18)**\n\n' +
+            '**Suchzeit:** Du hast **3 Minuten** ab Beginn der Suche.\n\n' +
+            'Wird der Ball nicht gefunden:\n' +
+            '**Schlag und Distanz** – 1 Strafschlag, zurück zum Ort des letzten Schlags.\n\n' +
+            '**Seit 2019:** Lokale Regel erlaubt alternativ das Droppen im Bereich wo der Ball verloren ging (2 Strafschläge) – prüfe ob dein Club diese Regel nutzt.';
+    }
+    if (f.includes('grün') && (f.includes('trifft') || f.includes('berührt') || f.includes('anderer ball'))) {
+        return '**Ball trifft Ball auf dem Grün (Regel 11.1)**\n\n' +
+            'Im **Zählspiel:** 2 Strafschläge für den Spieler dessen Ball den ruhenden Ball trifft. Beide Bälle werden zurückgelegt.\n\n' +
+            'Im **Lochspiel:** Kein Strafschlag. Der getroffene Ball wird zurückgelegt, dein Ball bleibt liegen wo er ist.\n\n' +
+            '**Tipp:** Auf dem Grün immer den Ball des Mitspielers markieren lassen bevor du puttest!';
+    }
+    if (f.includes('bunker') || f.includes('sand')) {
+        return '**Bunker-Regeln (Regel 12)**\n\n' +
+            '**Im Bunker nicht erlaubt:**\n' +
+            '- Sand vor dem Schlag berühren (Testschlag)\n' +
+            '- Schläger in den Sand aufsetzen (Adresse)\n' +
+            '- Lose Hemmnisse entfernen (außer ab 2019 erlaubt)\n\n' +
+            '**Erleichterung aus Bunker:**\n' +
+            '- 1 Strafschlag: Droppe hinter dem Bunker auf Ball–Fahne Linie\n' +
+            '- 2 Strafschläge: Schlag und Distanz (verlasse Bunker)';
+    }
+    if (f.includes('obstruktion') || f.includes('pfahl') || f.includes('sprinkler') || f.includes('hindernis')) {
+        return '**Bewegliche/Unbewegliche Obstruktion (Regel 15/16)**\n\n' +
+            '**Beweglich** (z.B. Papier, Rechen): Einfach entfernen – kein Strafschlag.\n\n' +
+            '**Unbeweglich** (z.B. Sprinkler, Weg): Straflose Erleichterung.\n' +
+            'Droppe innerhalb 1 Schlägerlänge vom nächsten Punkt ohne Behinderung, nicht näher zur Fahne.';
+    }
+    if (f.includes('handicap') || f.includes('hcp') || f.includes('vorgabe')) {
+        return '**Handicap Berechnung (World Handicap System)**\n\n' +
+            'Dein **Handicap Index** basiert auf den besten 8 deiner letzten 20 Runden.\n\n' +
+            '**Score Differential** = (113 / Slope) × (Bruttoergebnis – Course Rating)\n\n' +
+            'Das **Course Handicap** für einen Platz:\n' +
+            'Handicap Index × (Slope / 113) + (Course Rating – Par)\n\n' +
+            '**Tipp:** Nutze den HCP-Rechner in dieser App für deinen genauen Wert!';
+    }
+    if (f.includes('drop') || f.includes('droppen') || f.includes('erleichterung')) {
+        return '**Dropping-Regeln (Regel 14.3)**\n\n' +
+            '**Seit 2019:** Ball wird aus **Kniehöhe** fallengelassen (früher Schulterhöhe).\n\n' +
+            '**Relief Area:**\n' +
+            '- 1 Schlägerlänge: bei den meisten Erleichterungen\n' +
+            '- 2 Schlägerlängen: bei lateraler Erleichterung\n\n' +
+            'Der Ball muss in der Relief Area zur Ruhe kommen. Rollt er heraus, wird er platziert.';
+    }
+    if (f.includes('ausrüstung') || f.includes('schläger') || f.includes('ball') && f.includes('beschädigt')) {
+        return '**Beschädigte Ausrüstung (Regel 4)**\n\n' +
+            '**Beschädigter Schläger:**\n' +
+            '- Durch normales Spiel beschädigt: weiter verwenden erlaubt\n' +
+            '- Durch Wut/Missbrauch beschädigt: nicht ersetzen, aber weiter verwenden\n\n' +
+            '**Max. 14 Schläger:** Überschreitung = 2 Strafschläge pro Loch (max. 4/Runde)\n\n' +
+            '**Ball wechseln:** Erlaubt wenn sichtbar beschädigt (Schnitt, Delle) – Mitspieler informieren!';
+    }
+
+    // Allgemeine Antwort
+    return '**Golfregeln 2023–2027**\n\n' +
+        'Für diese Frage kann ich dir folgende Regelthemen empfehlen:\n\n' +
+        '⛳ Tippe auf einen der Vorschläge unten\n' +
+        '💧 Ball im Wasser\n' +
+        '🚫 Unspielbare Lage\n' +
+        '🔍 Ball nicht auffindbar\n' +
+        '🏌️ Bunker-Regeln\n\n' +
+        '**Oder stelle deine Frage genauer** – ich helfe dir sofort!';
+}
+
 // ─────────────────────────────────────────────
 // GOOGLE MAPS
 // ─────────────────────────────────────────────
-function openMaps(url) {
-    window.open(url, '_blank');
-}
+
 
 // ─────────────────────────────────────────────
 // HANDICAP RECHNER
-// ─────────────────────────────────────────────
-function goToHcp() {
-    showScreen('hcp-screen');
-    var saved = localStorage.getItem('cp_final_elite_v10');
-    var n = saved ? JSON.parse(saved).name : '';
-    var el = document.getElementById('wb-hcp-title');
-    if (el && n) el.innerText = 'Willkommen, ' + n + '! 🧮';
-}
 
-function openHcp(url) {
-    window.open(url, '_blank');
-}
 
 // ─────────────────────────────────────────────
 // WETTER (Open-Meteo API – kostenlos, kein Key)
@@ -448,148 +612,191 @@ function renderWetter(data, ort) {
     el.innerHTML = html;
 }
 
+
+// ─────────────────────────────────────────────
+// LOKALE REGELKARTEI
+// ─────────────────────────────────────────────
+function caddieAntwort(frage) {
+    var f = frage.toLowerCase();
+
+    if (f.includes('wasser') || f.includes('hindernis') || f.includes('penalty area')) {
+        return '**Ball im Penaltybereich (Regel 17)**\n\n' +
+            'Du hast **3 Optionen** (je 1 Strafschlag):\n\n' +
+            '1. **Schlag und Distanz** – Spiele vom Ort des letzten Schlags erneut\n' +
+            '2. **Rückwärts auf der Linie** – Stelle auf der Linie zwischen Fahne und Eintrittspunkt des Balls auf (beliebige Entfernung hinter dem Penaltybereich)\n' +
+            '3. **Seitliche Erleichterung** (nur rote Markierung) – Droppe innerhalb 2 Schlägerlängen vom Eintrittspunkt, nicht näher zur Fahne\n\n' +
+            '**Tipp:** Bei gelber Markierung entfällt Option 3.';
+    }
+    if (f.includes('unspielbar')) {
+        return '**Unspielbare Lage (Regel 19)**\n\n' +
+            'Du hast **3 Optionen** (je 1 Strafschlag):\n\n' +
+            '1. **Schlag und Distanz** – Zurück zum Ort des letzten Schlags\n' +
+            '2. **Rückwärts auf der Linie** – Beliebig weit hinter dem Ball auf der Linie Ball–Fahne\n' +
+            '3. **Seitliche Erleichterung** – Droppe innerhalb 2 Schlägerlängen vom Ball, nicht näher zur Fahne\n\n' +
+            '**Ausnahme:** Im Bunker? Dann nur Optionen 1 & 2 (oder mit 2 Strafschlägen außerhalb).';
+    }
+    if (f.includes('nicht auffindbar') || f.includes('verloren') || f.includes('suche') || f.includes('such')) {
+        return '**Verlorener Ball (Regel 18)**\n\n' +
+            '**Suchzeit:** Du hast **3 Minuten** ab Beginn der Suche.\n\n' +
+            'Wird der Ball nicht gefunden:\n' +
+            '**Schlag und Distanz** – 1 Strafschlag, zurück zum Ort des letzten Schlags.\n\n' +
+            '**Seit 2019:** Lokale Regel erlaubt alternativ das Droppen im Bereich wo der Ball verloren ging (2 Strafschläge) – prüfe ob dein Club diese Regel nutzt.';
+    }
+    if (f.includes('grün') && (f.includes('trifft') || f.includes('berührt') || f.includes('anderer ball'))) {
+        return '**Ball trifft Ball auf dem Grün (Regel 11.1)**\n\n' +
+            'Im **Zählspiel:** 2 Strafschläge für den Spieler dessen Ball den ruhenden Ball trifft. Beide Bälle werden zurückgelegt.\n\n' +
+            'Im **Lochspiel:** Kein Strafschlag. Der getroffene Ball wird zurückgelegt, dein Ball bleibt liegen wo er ist.\n\n' +
+            '**Tipp:** Auf dem Grün immer den Ball des Mitspielers markieren lassen bevor du puttest!';
+    }
+    if (f.includes('bunker') || f.includes('sand')) {
+        return '**Bunker-Regeln (Regel 12)**\n\n' +
+            '**Im Bunker nicht erlaubt:**\n' +
+            '- Sand vor dem Schlag berühren (Testschlag)\n' +
+            '- Schläger in den Sand aufsetzen (Adresse)\n' +
+            '- Lose Hemmnisse entfernen (außer ab 2019 erlaubt)\n\n' +
+            '**Erleichterung aus Bunker:**\n' +
+            '- 1 Strafschlag: Droppe hinter dem Bunker auf Ball–Fahne Linie\n' +
+            '- 2 Strafschläge: Schlag und Distanz (verlasse Bunker)';
+    }
+    if (f.includes('obstruktion') || f.includes('pfahl') || f.includes('sprinkler') || f.includes('hindernis')) {
+        return '**Bewegliche/Unbewegliche Obstruktion (Regel 15/16)**\n\n' +
+            '**Beweglich** (z.B. Papier, Rechen): Einfach entfernen – kein Strafschlag.\n\n' +
+            '**Unbeweglich** (z.B. Sprinkler, Weg): Straflose Erleichterung.\n' +
+            'Droppe innerhalb 1 Schlägerlänge vom nächsten Punkt ohne Behinderung, nicht näher zur Fahne.';
+    }
+    if (f.includes('handicap') || f.includes('hcp') || f.includes('vorgabe')) {
+        return '**Handicap Berechnung (World Handicap System)**\n\n' +
+            'Dein **Handicap Index** basiert auf den besten 8 deiner letzten 20 Runden.\n\n' +
+            '**Score Differential** = (113 / Slope) × (Bruttoergebnis – Course Rating)\n\n' +
+            'Das **Course Handicap** für einen Platz:\n' +
+            'Handicap Index × (Slope / 113) + (Course Rating – Par)\n\n' +
+            '**Tipp:** Nutze den HCP-Rechner in dieser App für deinen genauen Wert!';
+    }
+    if (f.includes('drop') || f.includes('droppen') || f.includes('erleichterung')) {
+        return '**Dropping-Regeln (Regel 14.3)**\n\n' +
+            '**Seit 2019:** Ball wird aus **Kniehöhe** fallengelassen (früher Schulterhöhe).\n\n' +
+            '**Relief Area:**\n' +
+            '- 1 Schlägerlänge: bei den meisten Erleichterungen\n' +
+            '- 2 Schlägerlängen: bei lateraler Erleichterung\n\n' +
+            'Der Ball muss in der Relief Area zur Ruhe kommen. Rollt er heraus, wird er platziert.';
+    }
+    if (f.includes('ausrüstung') || f.includes('schläger') || f.includes('ball') && f.includes('beschädigt')) {
+        return '**Beschädigte Ausrüstung (Regel 4)**\n\n' +
+            '**Beschädigter Schläger:**\n' +
+            '- Durch normales Spiel beschädigt: weiter verwenden erlaubt\n' +
+            '- Durch Wut/Missbrauch beschädigt: nicht ersetzen, aber weiter verwenden\n\n' +
+            '**Max. 14 Schläger:** Überschreitung = 2 Strafschläge pro Loch (max. 4/Runde)\n\n' +
+            '**Ball wechseln:** Erlaubt wenn sichtbar beschädigt (Schnitt, Delle) – Mitspieler informieren!';
+    }
+
+    // Allgemeine Antwort
+    return '**Golfregeln 2023–2027**\n\n' +
+        'Für diese Frage kann ich dir folgende Regelthemen empfehlen:\n\n' +
+        '⛳ Tippe auf einen der Vorschläge unten\n' +
+        '💧 Ball im Wasser\n' +
+        '🚫 Unspielbare Lage\n' +
+        '🔍 Ball nicht auffindbar\n' +
+        '🏌️ Bunker-Regeln\n\n' +
+        '**Oder stelle deine Frage genauer** – ich helfe dir sofort!';
+}
+
 // ─────────────────────────────────────────────
 // GOOGLE MAPS
 // ─────────────────────────────────────────────
-function openMaps(url) {
-    window.open(url, '_blank');
-}
+
 
 // ─────────────────────────────────────────────
 // HANDICAP RECHNER
-// ─────────────────────────────────────────────
-function goToHcp() {
-    showScreen('hcp-screen');
-    var saved = localStorage.getItem('cp_final_elite_v10');
-    var n = saved ? JSON.parse(saved).name : '';
-    var el = document.getElementById('wb-hcp-title');
-    if (el && n) el.innerText = 'Willkommen, ' + n + '! 🧮';
-}
 
-function openHcp(url) {
-    window.open(url, '_blank');
-}
 
 // ─────────────────────────────────────────────
 // WETTER (Open-Meteo API – kostenlos, kein Key)
 // ─────────────────────────────────────────────
-function loadWetter() {
-    var el = document.getElementById('wetter-leiste');
-    if (!el) return;
 
-    el.innerHTML = '<div class="wetter-loading">📍 Wetterdaten werden geladen...</div>';
 
-    // Versuche Geolocation, Fallback: Stuttgart (Waiblingen-Nähe)
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-            function(pos) {
-                fetchWetter(pos.coords.latitude.toFixed(4), pos.coords.longitude.toFixed(4));
-            },
-            function(err) {
-                // GPS verweigert oder Timeout → Stuttgart/Waiblingen
-                fetchWetter('48.8340', '9.3184');
-            },
-            { timeout: 6000, maximumAge: 300000 }
-        );
-    } else {
-        fetchWetter('48.8340', '9.3184');
-    }
+// ─────────────────────────────────────────────
+// KI-CADDIE
+// ─────────────────────────────────────────────
+var caddieHistory = [];
+
+function goToCaddie() {
+    showScreen('caddie-screen');
+    var saved = localStorage.getItem('cp_final_elite_v10');
+    var n = saved ? JSON.parse(saved).name : '';
+    var el = document.getElementById('caddie-welcome-name');
+    if (el && n) el.innerText = 'Hallo ' + n + ', dein KI-Caddie!';
 }
 
-function fetchWetter(lat, lon) {
-    var url = 'https://api.open-meteo.com/v1/forecast'
-        + '?latitude=' + lat
-        + '&longitude=' + lon
-        + '&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_sum,windspeed_10m_max'
-        + '&timezone=Europe%2FBerlin'
-        + '&forecast_days=3';
-
-    // Immer frisch laden
-    fetch(url, { cache: 'no-store', mode: 'cors' })
-        .then(function(r) { return r.json(); })
-        .then(function(data) { renderWetter(data, lat, lon); })
-        .catch(function() {
-            var el = document.getElementById('wetter-leiste');
-            if (el) el.innerHTML = '<div class="wetter-error">⚠ Wetter gerade nicht verfügbar – bitte Internet prüfen</div>';
-        });
+function clearCaddie() {
+    caddieHistory = [];
+    var msgs = document.getElementById('caddie-messages');
+    if (!msgs) return;
+    var wraps = msgs.querySelectorAll('.caddie-msg-wrap');
+    wraps.forEach(function(w) { w.remove(); });
+    var wb = document.getElementById('caddie-welcome-box');
+    if (wb) wb.style.display = 'block';
 }
 
-function renderWetter(data, lat, lon) {
-    var el = document.getElementById('wetter-leiste');
-    if (!el) return;
+function askSuggestion(btn) {
+    document.getElementById('caddie-input').value = btn.innerText;
+    sendCaddie();
+}
 
-    var codes = data.daily.weathercode;
-    var maxT   = data.daily.temperature_2m_max;
-    var minT   = data.daily.temperature_2m_min;
-    var rain   = data.daily.precipitation_sum;
-    var wind   = data.daily.windspeed_10m_max;
-    var dates  = data.daily.time;
+function sendCaddie() {
+    var input = document.getElementById('caddie-input');
+    if (!input) return;
+    var text = input.value.trim();
+    if (!text) return;
+    input.value = '';
 
-    function wetterIcon(code) {
-        if (code === 0)              return '☀️';
-        if (code <= 2)               return '🌤️';
-        if (code === 3)              return '☁️';
-        if (code <= 49)              return '🌫️';
-        if (code <= 59)              return '🌦️';
-        if (code <= 69)              return '🌧️';
-        if (code <= 79)              return '❄️';
-        if (code <= 82)              return '🌧️';
-        if (code <= 84)              return '🌨️';
-        if (code <= 99)              return '⛈️';
-        return '🌡️';
-    }
+    var wb = document.getElementById('caddie-welcome-box');
+    if (wb) wb.style.display = 'none';
 
-    function golfEignung(code, regen, windSpeed) {
-        if (code >= 80 || regen > 5) return { text: 'Schlechte Bedingungen', col: '#ff4d4d' };
-        if (code >= 61 || regen > 1) return { text: 'Bedingt spielbar', col: '#ffa726' };
-        if (windSpeed > 40)          return { text: 'Sehr windig', col: '#ffa726' };
-        if (code <= 2 && regen === 0) return { text: 'Ideale Bedingungen ⛳', col: '#2ecc71' };
-        return { text: 'Gute Bedingungen', col: '#2ecc71' };
-    }
+    addCaddieMsg('user', text);
+    caddieHistory.push({ role: 'user', content: text });
 
-    function tagName(dateStr, i) {
-        if (i === 0) return 'HEUTE';
-        if (i === 1) return 'MORGEN';
-        // Datum explizit als lokale Zeit parsen (kein UTC-Versatz)
-        var parts = dateStr.split('-');
-        var d = new Date(parseInt(parts[0]), parseInt(parts[1])-1, parseInt(parts[2]));
-        var tage = ['SO', 'MO', 'DI', 'MI', 'DO', 'FR', 'SA'];
-        return tage[d.getDay()];
-    }
+    // Lokale Regelkartei – sofortige Antwort
+    var answer = caddieAntwort(text);
+    caddieHistory.push({ role: 'assistant', content: answer });
+    addCaddieMsg('assistant', answer);
+    scrollCaddie();
+}
 
-    // Ortsname per Reverse Geocoding
-    fetch('https://nominatim.openstreetmap.org/reverse?lat=' + lat + '&lon=' + lon + '&format=json')
-        .then(function(r) { return r.json(); })
-        .then(function(geo) {
-            var ort = geo.address.city || geo.address.town || geo.address.village || geo.address.county || 'Aktueller Standort';
-            var html = '<div class="wetter-ort">📍 ' + ort + '</div><div class="wetter-tage">';
-            for (var i = 0; i < 3; i++) {
-                var eg = golfEignung(codes[i], rain[i], wind[i]);
-                html += '<div class="wetter-tag">'
-                    + '<span class="wt-day">' + tagName(dates[i], i) + '</span>'
-                    + '<span class="wt-icon">' + wetterIcon(codes[i]) + '</span>'
-                    + '<span class="wt-temp">' + Math.round(maxT[i]) + '° / ' + Math.round(minT[i]) + '°</span>'
-                    + '<span class="wt-regen">' + (rain[i] > 0 ? '💧 ' + rain[i].toFixed(1) + 'mm' : '🌵 trocken') + '</span>'
-                    + '<span class="wt-golf" style="color:' + eg.col + '">' + eg.text + '</span>'
-                    + '</div>';
+function addCaddieMsg(role, text, id) {
+    var msgs = document.getElementById('caddie-messages');
+    if (!msgs) return;
+    var wrap = document.createElement('div');
+    wrap.className = 'caddie-msg-wrap caddie-msg-' + role;
+    var bubble = document.createElement('div');
+    bubble.className = 'caddie-bubble';
+    if (id) bubble.id = id;
+    bubble.innerHTML = formatCaddieText(text);
+    wrap.appendChild(bubble);
+    msgs.appendChild(wrap);
+    scrollCaddie();
+}
+
+function scrollCaddie() {
+    var body = document.querySelector('.caddie-body');
+    if (body) body.scrollTop = body.scrollHeight;
+}
+
+function formatCaddieText(text) {
+    if (!text) return '';
+    var r = text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    r = r.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+    r = r.split("\n").join("<br>");
+    return r;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    var inp = document.getElementById('caddie-input');
+    if (inp) {
+        inp.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendCaddie();
             }
-            html += '</div>';
-            el.innerHTML = html;
-        })
-        .catch(function() {
-            // Ohne Ortsname anzeigen
-            var html = '<div class="wetter-ort">📍 Wetter</div><div class="wetter-tage">';
-            for (var i = 0; i < 3; i++) {
-                var eg = golfEignung(codes[i], rain[i], wind[i]);
-                html += '<div class="wetter-tag">'
-                    + '<span class="wt-day">' + tagName(dates[i], i) + '</span>'
-                    + '<span class="wt-icon">' + wetterIcon(codes[i]) + '</span>'
-                    + '<span class="wt-temp">' + Math.round(maxT[i]) + '° / ' + Math.round(minT[i]) + '°</span>'
-                    + '<span class="wt-regen">' + (rain[i] > 0 ? '💧 ' + rain[i].toFixed(1) + 'mm' : '🌵 trocken') + '</span>'
-                    + '<span class="wt-golf" style="color:' + eg.col + '">' + eg.text + '</span>'
-                    + '</div>';
-            }
-            html += '</div>';
-            el.innerHTML = html;
         });
-}
+    }
+});
